@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Store processed data
+=======
+
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
 let processedData = {
     protocol: {},
     country: {},
@@ -6,6 +10,7 @@ let processedData = {
     destinationPort: {}
 };
 
+<<<<<<< HEAD
 // Add global variable to store original data
 let originalData = [];
 
@@ -21,12 +26,30 @@ async function loadAndProcessData() {
     try {
         console.log('Starting to load data...');
         const response = await fetch('../node/data/cleaned_data.json');
+=======
+
+let originalData = [];
+
+
+const START_DATE = new Date('2013-03-03');
+const END_DATE = new Date('2013-08-09');
+
+
+let currentChartType = 'protocol';
+
+
+async function loadAndProcessData() {
+    try {
+        console.log('loading...');
+        const response = await fetch('/node/data/cleaned_data.json');
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         
         const data = await response.json();
+<<<<<<< HEAD
         console.log('Data count:', data.length);
         console.log('Raw data sample:', data[0]);
 
@@ -38,10 +61,24 @@ async function loadAndProcessData() {
 
     } catch (error) {
         console.error('Failed to load data:', error);
+=======
+        console.log('data number:', data.length);
+        console.log('data show:', data[0]);
+
+        
+        originalData = data;
+
+        
+        processData(originalData);
+
+    } catch (error) {
+        console.error('load defalut:', error);
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         throw error;
     }
 }
 
+<<<<<<< HEAD
 // Get sorted top 10 data
 function getTop10Data(dataObject) {
     console.log('Starting to process Top10 data, raw data:', dataObject);
@@ -49,17 +86,31 @@ function getTop10Data(dataObject) {
     const result = Object.entries(dataObject)
         .sort(([,a], [,b]) => b - a)  // Sort by value in descending order
         .slice(0, 10)  // Get top 10
+=======
+
+function getTop10Data(dataObject) {
+    console.log('Start processing Top10 data, raw data:', dataObject);
+    
+    const result = Object.entries(dataObject)
+        .sort(([,a], [,b]) => b - a)  
+        .slice(0, 10)  
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         .reduce((obj, [key, value]) => {
             obj.labels.push(key);
             obj.values.push(value);
             return obj;
         }, { labels: [], values: [] });
     
+<<<<<<< HEAD
     console.log('Top10 processing result:', result);
+=======
+    console.log('Top10 results:', result);
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
     return result;
 }
 
 function loadChart(type) {
+<<<<<<< HEAD
     console.log(`Loading ${type} type chart`);
     
     // Validate and update current chart type
@@ -67,6 +118,15 @@ function loadChart(type) {
         currentChartType = type;
     } else {
         console.error('Invalid chart type:', type);
+=======
+    console.log(`load ${type} chart`);
+    
+    
+    if (type && ['protocol', 'country', 'sourcePort', 'destinationPort'].includes(type)) {
+        currentChartType = type;
+    } else {
+        console.error('Invalid chart types:', type);
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         return;
     }
     
@@ -75,21 +135,36 @@ function loadChart(type) {
         window.chartInstance.destroy();
     }
 
+<<<<<<< HEAD
     // Ensure data exists
+=======
+   
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
     if (!processedData || !processedData[type]) {
         console.error('Data not available for type:', type);
         return;
     }
 
+<<<<<<< HEAD
     // Get top 10 data for the specified type
     const chartData = getTop10Data(processedData[type]);
 
     // Set random colors
+=======
+    
+    const chartData = getTop10Data(processedData[type]);
+
+    
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
     const backgroundColors = chartData.labels.map(() => 
         `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`
     );
 
+<<<<<<< HEAD
     // Create new chart
+=======
+    
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
     window.chartInstance = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -131,6 +206,7 @@ function loadChart(type) {
         }
     });
     
+<<<<<<< HEAD
     console.log('Chart creation completed');
 }
 
@@ -143,11 +219,26 @@ function updateChartWithTimeRange(startDate, endDate) {
         // Ensure originalData exists
         if (!originalData || !Array.isArray(originalData)) {
             console.error('Original data not available');
+=======
+    console.log('Chart creation complete');
+}
+
+
+function updateChartWithTimeRange(startDate, endDate) {
+    console.log('Updated timeframe:', startDate, endDate);
+    console.log('Current Chart Type:', currentChartType);
+    
+    try {
+        
+        if (!originalData || !Array.isArray(originalData)) {
+            console.error('Raw data not available');
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
             processData([{ proto: 'NO_DATA', country: 'NO_DATA', spt: 'NO_DATA', dpt: 'NO_DATA' }]);
             loadChart(currentChartType);
             return;
         }
 
+<<<<<<< HEAD
         // Set start date to the start of the day (00:00:00)
         const start = new Date(startDate);
         start.setHours(0, 0, 0, 0);
@@ -163,6 +254,23 @@ function updateChartWithTimeRange(startDate, endDate) {
         );
 
         // Filter data within the time range
+=======
+       
+        const start = new Date(startDate);
+        start.setHours(0, 0, 0, 0);
+        
+        
+        const end = new Date(endDate);
+        end.setHours(23, 59, 59, 999);
+        
+        console.log('Screening timeframe:', 
+            start.toISOString(), 'to', 
+            end.toISOString(),
+            'Type of chart:', currentChartType
+        );
+
+        
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         const filteredData = originalData.filter(item => {
             if (!item || !item.datetime) {
                 return false;
@@ -172,17 +280,29 @@ function updateChartWithTimeRange(startDate, endDate) {
             return itemDate >= start && itemDate <= end;
         });
 
+<<<<<<< HEAD
         console.log('Filtered data count:', filteredData.length);
         
         if (filteredData.length === 0) {
             console.log('No data in selected time range');
+=======
+        console.log('Number of filtered data:', filteredData.length);
+        
+        if (filteredData.length === 0) {
+            console.log('No data available for the selected time frame');
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
             processData([{ proto: 'NO_DATA', country: 'NO_DATA', spt: 'NO_DATA', dpt: 'NO_DATA' }]);
         } else {
             processData(filteredData);
         }
 
+<<<<<<< HEAD
         // Ensure chart updates with correct type
         console.log('Updating chart with type:', currentChartType);
+=======
+        
+        console.log('Update charts, use types:', currentChartType);
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         loadChart(currentChartType);
 
     } catch (error) {
@@ -198,12 +318,20 @@ function initializeTimeSlider() {
         min: START_DATE.getTime(),
         max: END_DATE.getTime(),
         values: [START_DATE.getTime(), END_DATE.getTime()],
+<<<<<<< HEAD
         step: 86400000, // Milliseconds in a day
+=======
+        step: 86400000, 
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         slide: function(event, ui) {
             const startDate = new Date(ui.values[0]);
             const endDate = new Date(ui.values[1]);
             
+<<<<<<< HEAD
             // Update time range display (only show date)
+=======
+            
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
             $("#timeRange").text(
                 `Selected Time Range: ${formatDate(startDate)} - ${formatDate(endDate)}`
             );
@@ -215,7 +343,11 @@ function initializeTimeSlider() {
         }
     });
 
+<<<<<<< HEAD
     // Set initial time range display
+=======
+   
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
     $("#timeRange").text(
         `Selected Time Range: ${formatDate(START_DATE)} - ${formatDate(END_DATE)}`
     );
@@ -223,7 +355,11 @@ function initializeTimeSlider() {
 
 function processData(data) {
     if (!data || !Array.isArray(data)) {
+<<<<<<< HEAD
         console.error('Invalid data input');
+=======
+        console.error('Invalid data entry');
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         data = [{
             proto: 'INVALID_DATA',
             country: 'INVALID_DATA',
@@ -232,9 +368,15 @@ function processData(data) {
         }];
     }
 
+<<<<<<< HEAD
     console.log('Processing data, count:', data.length);
     
     // Reset processed data object
+=======
+    console.log('Processing data, volume of data:', data.length);
+    
+
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
     processedData = {
         protocol: {},
         country: {},
@@ -242,11 +384,19 @@ function processData(data) {
         destinationPort: {}
     };
 
+<<<<<<< HEAD
     // Process each data item
     data.forEach(item => {
         if (!item) return;
         
         // Use empty value check and default value
+=======
+
+    data.forEach(item => {
+        if (!item) return;
+        
+
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         const proto = (item.proto || 'Unknown').toString();
         const country = (item.country || 'Unknown').toString();
         const spt = (item.spt || 'Unknown').toString();
@@ -258,16 +408,27 @@ function processData(data) {
         processedData.destinationPort[dpt] = (processedData.destinationPort[dpt] || 0) + 1;
     });
 
+<<<<<<< HEAD
     // Ensure each category has at least one data
+=======
+ 
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
     if (Object.keys(processedData.protocol).length === 0) processedData.protocol['NO_DATA'] = 1;
     if (Object.keys(processedData.country).length === 0) processedData.country['NO_DATA'] = 1;
     if (Object.keys(processedData.sourcePort).length === 0) processedData.sourcePort['NO_DATA'] = 1;
     if (Object.keys(processedData.destinationPort).length === 0) processedData.destinationPort['NO_DATA'] = 1;
 
+<<<<<<< HEAD
     console.log('Data processing completed, statistics:', processedData);
 }
 
 // Add date formatting helper function
+=======
+    console.log('Data processing completed, statistical results:', processedData);
+}
+
+
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
 function formatDate(date) {
     return date.toLocaleDateString('en-US', {
         year: 'numeric',
@@ -276,6 +437,7 @@ function formatDate(date) {
     });
 }
 
+<<<<<<< HEAD
 // Modify button click event handler (in HTML)
 function initializeButtons() {
     document.querySelectorAll('.controls button').forEach(button => {
@@ -285,6 +447,17 @@ function initializeButtons() {
             let type;
             
             // Set correct chart type based on button text
+=======
+
+function initializeButtons() {
+    document.querySelectorAll('.controls button').forEach(button => {
+        button.addEventListener('click', function() {
+  
+            const buttonText = this.textContent.toLowerCase();
+            let type;
+            
+        
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
             if (buttonText.includes('protocol')) {
                 type = 'protocol';
             } else if (buttonText.includes('country')) {
@@ -295,16 +468,25 @@ function initializeButtons() {
                 type = 'destinationPort';
             }
             
+<<<<<<< HEAD
             // Update current chart type
             currentChartType = type;
             console.log('Switching to chart type:', currentChartType);
             
             // Load new chart
+=======
+      
+            currentChartType = type;
+            console.log('Switch to chart type:', currentChartType);
+            
+       
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
             loadChart(type);
         });
     });
 }
 
+<<<<<<< HEAD
 // Initialize on page load
 $(document).ready(function() {
     // Set default chart type
@@ -314,6 +496,17 @@ $(document).ready(function() {
     initializeButtons();
     
     // Load initial data
+=======
+
+$(document).ready(function() {
+
+    currentChartType = 'protocol';
+    
+
+    initializeButtons();
+    
+
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
     loadAndProcessData().then(() => {
         loadChart(currentChartType);
     }).catch(error => {

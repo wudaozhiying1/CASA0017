@@ -12,11 +12,19 @@
     <link rel="stylesheet" href="./css/animate.min.css">
     <link rel="stylesheet" href="./css/fontawesome-all.min.css">
     <link rel="stylesheet" href="./css/style.css">
+<<<<<<< HEAD
     <!-- Import jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Import jQuery UI -->
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <!-- Import jQuery UI styles -->
+=======
+    <!--jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <!--jQuery UI -->
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
 
@@ -27,12 +35,17 @@
 
 
     <style>
+<<<<<<< HEAD
         /* Ensure body and html have no default margins and padding */
+=======
+
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         body, html {
             margin: 0;
             padding: 0;
         }
 
+<<<<<<< HEAD
         /* Fixed header style */
 
         /* Main content, add top margin to avoid overlap with fixed header */
@@ -47,6 +60,20 @@
         }
 
         /* Other styles */
+=======
+
+        .content {
+            margin-top: 80px; 
+            padding: 20px;
+        }
+
+ 
+        html {
+            scroll-padding-top: 80px; 
+        }
+
+
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         #chartContainer {
             width: 80%;
             margin: auto;
@@ -82,7 +109,11 @@
             font-size: 1.2em;
             color: #666;
         }
+<<<<<<< HEAD
         /* Responsive design */
+=======
+
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         @media (max-width: 768px) {
             .controls button {
                 width: 100%;
@@ -214,7 +245,11 @@
                 </header>
                 <!-- header-area-end -->
 
+<<<<<<< HEAD
     <!-- main -->
+=======
+
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
     <div class="content">
         <div class="container text-center">
             <h1>Honeypot Data Visualization</h1>
@@ -233,7 +268,11 @@
     </div>
 
     <!-- JS -->
+<<<<<<< HEAD
      <!-- Import Chart.js -->
+=======
+
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/main.js"></script>
@@ -241,6 +280,7 @@
 
 
     <script>
+<<<<<<< HEAD
         // Add before other scripts
         console.log('Checking script loading...');
         
@@ -268,6 +308,36 @@
             // Add data validation
             if (!processedData || !processedData[type]) {
                 console.error('Invalid data or type:', type);
+=======
+      
+        console.log('checking load...');
+        
+        $(document).ready(function() {
+            console.log('jQuery load');
+            
+         
+            if (typeof loadAndProcessData === 'function') {
+                console.log('chart.js load correct');
+            } else {
+                console.error('chart.js load mistake');
+            }
+            
+    
+            try {
+                loadAndProcessData();
+            } catch (e) {
+                console.error('load data mistake:', e);
+            }
+        });
+
+
+        function loadChart(type) {
+            console.log(`load${type}chart，data:`, processedData);
+            
+         
+            if (!processedData || !processedData[type]) {
+                console.error('useless data:', type);
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                 processedData = {
                     protocol: { 'NO_DATA': 1 },
                     country: { 'NO_DATA': 1 },
@@ -281,26 +351,47 @@
                 window.chartInstance.destroy();
             }
 
+<<<<<<< HEAD
             // Ensure data exists and is an object
             const data = processedData[type] || { 'NO_DATA': 1 };
             
             // Add data validation
             try {
                 // Get top 10 data for the specified type
+=======
+      
+            const data = processedData[type] || { 'NO_DATA': 1 };
+            
+         
+            try {
+            
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                 const sortedData = Object.entries(data)
                     .sort(([, a], [, b]) => b - a)
                     .slice(0, 10);
 
+<<<<<<< HEAD
                 // Prepare chart data
                 const labels = sortedData.map(([key]) => key);
                 const values = sortedData.map(([, value]) => value);
 
                 // Set random colors
+=======
+               
+                const labels = sortedData.map(([key]) => key);
+                const values = sortedData.map(([, value]) => value);
+
+               
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                 const backgroundColors = labels.map(() => 
                     `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`
                 );
 
+<<<<<<< HEAD
                 // Create new chart
+=======
+            
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                 window.chartInstance = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -342,11 +433,19 @@
                     }
                 });
                 
+<<<<<<< HEAD
                 console.log('Chart created');
                 
             } catch (error) {
                 console.error('Error creating chart:', error);
                 // Display error chart
+=======
+                console.log('chart load finish');
+                
+            } catch (error) {
+                console.error('error in creat chart:', error);
+             
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                 window.chartInstance = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -378,7 +477,11 @@
             
 
             $('#timeSlider').slider({
+<<<<<<< HEAD
                 // jQuery UI Slider configuration options
+=======
+               
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
             });
 });
 
@@ -389,7 +492,11 @@
 
 
 
+<<<<<<< HEAD
         // Modify time slider initialization
+=======
+      
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         $(document).ready(function () {
             const START_DATE = new Date('2013-03-03');
             const END_DATE = new Date('2013-08-09');
@@ -399,7 +506,11 @@
                 min: START_DATE.getTime(),
                 max: END_DATE.getTime(),
                 values: [START_DATE.getTime(), END_DATE.getTime()],
+<<<<<<< HEAD
                 step: 86400000, // Milliseconds in a day
+=======
+                step: 86400000, 
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                 slide: function(event, ui) {
                     if (ui.values[0] >= ui.values[1]) {
                         return false;
@@ -408,28 +519,48 @@
                     const startDate = new Date(ui.values[0]);
                     const endDate = new Date(ui.values[1]);
                     
+<<<<<<< HEAD
                     // Update time range display
+=======
+                   
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                     $("#timeRange").text(
                         `Selected Time Range: ${formatDate(startDate)} - ${formatDate(endDate)}`
                     );
                 },
                 stop: function(event, ui) {
+<<<<<<< HEAD
                     // Update chart when slider stops
                     const startDate = new Date(ui.values[0]);
                     const endDate = new Date(ui.values[1]);
                     
                     // Call updateChartWithTimeRange function from chart.js
+=======
+                    
+                    const startDate = new Date(ui.values[0]);
+                    const endDate = new Date(ui.values[1]);
+                    
+                    
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                     updateChartWithTimeRange(startDate, endDate);
                 }
             });
 
+<<<<<<< HEAD
             // Set initial time range display
+=======
+            
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
             $("#timeRange").text(
                 `Selected Time Range: ${formatDate(START_DATE)} - ${formatDate(END_DATE)}`
             );
         });
 
+<<<<<<< HEAD
         // Add date formatting helper function
+=======
+        
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         function formatDate(date) {
             return date.toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -438,11 +569,19 @@
             });
         }
 
+<<<<<<< HEAD
         // Ensure data is initialized after page load
         $(document).ready(function() {
             // Load data and initialize chart
             loadAndProcessData().then(() => {
                 // Initialize default display to protocol distribution chart
+=======
+        
+        $(document).ready(function() {
+            
+            loadAndProcessData().then(() => {
+                
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                 loadChart('protocol');
             }).catch(error => {
                 console.error('Failed to load data:', error);
@@ -450,6 +589,7 @@
         });
 
         const jsonData = [
+<<<<<<< HEAD
             // Paste cleaned_data.json content here
         ];
 
@@ -460,6 +600,18 @@
         });
 
         // Add data processing function
+=======
+            
+        ];
+
+        
+        $(document).ready(function() {
+            
+            processData(jsonData);
+        });
+
+        
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         function processData(data) {
             processedData = {
                 protocol: {},
@@ -468,30 +620,52 @@
                 destinationPort: {}
             };
 
+<<<<<<< HEAD
             // Process each data item
             data.forEach(item => {
                 // Process protocol data
+=======
+           
+            data.forEach(item => {
+                
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                 if (item.proto) {
                     processedData.protocol[item.proto] = (processedData.protocol[item.proto] || 0) + 1;
                 }
                 
+<<<<<<< HEAD
                 // Process country data
+=======
+                
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                 if (item.country) {
                     processedData.country[item.country] = (processedData.country[item.country] || 0) + 1;
                 }
                 
+<<<<<<< HEAD
                 // Process source port data
+=======
+                
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                 if (item.spt) {
                     processedData.sourcePort[item.spt] = (processedData.sourcePort[item.spt] || 0) + 1;
                 }
                 
+<<<<<<< HEAD
                 // Process destination port data
+=======
+                
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                 if (item.dpt) {
                     processedData.destinationPort[item.dpt] = (processedData.destinationPort[item.dpt] || 0) + 1;
                 }
             });
 
+<<<<<<< HEAD
             // Initialize default chart
+=======
+            
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
             loadChart('protocol');
         }
     </script>

@@ -3,7 +3,11 @@
     body, html {
       margin: 0;
       height: 100%;
+<<<<<<< HEAD
       background-color: #000000; /* Set dark background */
+=======
+      background-color: #000000; 
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
     }
     #globeViz {
       width: 100%;
@@ -29,7 +33,11 @@
     import * as THREE from 'https://esm.sh/three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js?external=three';
 
+<<<<<<< HEAD
     // Generate random data
+=======
+    
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
     const N = 50;
 
     const arcsData = [...Array(N).keys()].map(() => ({
@@ -62,12 +70,17 @@
         .arcDashInitialGap(() => Math.random() * 5)
         .arcDashAnimateTime(600);
 
+<<<<<<< HEAD
       // Setup renderer
+=======
+      
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
       const renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setClearColor('#000000', 1);
       document.getElementById('globeViz').appendChild(renderer.domElement);
 
+<<<<<<< HEAD
       // Setup scene
       const scene = new THREE.Scene();
 
@@ -76,6 +89,16 @@
       const starCount = 20000; // Number of stars
       const minDistance = 1500; // Minimum distance
       const maxDistance = 3000; // Maximum distance
+=======
+      
+      const scene = new THREE.Scene();
+
+      
+      const starsGeometry = new THREE.BufferGeometry();
+      const starCount = 20000; 
+      const minDistance = 1500; 
+      const maxDistance = 3000; 
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
       const positions = new Float32Array(starCount * 3);
 
       for (let i = 0; i < starCount; i++) {
@@ -101,13 +124,21 @@
       scene.add(new THREE.AmbientLight(0xcccccc, Math.PI));
       scene.add(new THREE.DirectionalLight(0xffffff, 0.6 * Math.PI));
 
+<<<<<<< HEAD
       // Setup camera
+=======
+      
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
       const camera = new THREE.PerspectiveCamera();
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       camera.position.z = 400;
 
+<<<<<<< HEAD
       // Add OrbitControls
+=======
+      
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.minDistance = 200;
       controls.maxDistance = 600;
@@ -117,10 +148,17 @@
       controls.minPolarAngle = Math.PI / 3.5;
       controls.maxPolarAngle = Math.PI - Math.PI / 3;
 
+<<<<<<< HEAD
       // Disable right-click panning
       controls.enablePan = false;
 
       // Detect user inactivity to resume rotation
+=======
+      
+      controls.enablePan = false;
+
+      
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
       let lastMoveTime = Date.now();
       let isMouseActive = false;
       let isGlobeRotating = true;
@@ -157,7 +195,11 @@
       if (isGlobeRotating) {
         const rotationSpeed = 0.0003;
         Globe.rotation.y -= rotationSpeed;
+<<<<<<< HEAD
         starField.rotation.y -= rotationSpeed; // Synchronize starfield rotation with globe
+=======
+        starField.rotation.y -= rotationSpeed; 
+>>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
       }
 
       controls.update();
