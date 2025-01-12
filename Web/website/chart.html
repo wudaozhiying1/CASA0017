@@ -33,20 +33,18 @@
             padding: 0;
         }
 
-        /* 固定页眉样式 */
 
-        /* 主体内容，添加上边距以避免与固定页眉重叠 */
         .content {
-            margin-top: 80px; /* 根据页眉的实际高度进行调整 */
+            margin-top: 80px; 
             padding: 20px;
         }
 
-        /* 滚动到锚点时，避免内容被固定页眉遮挡 */
+ 
         html {
-            scroll-padding-top: 80px; /* 与页眉高度相同 */
+            scroll-padding-top: 80px; 
         }
 
-        /* 其他样式 */
+
         #chartContainer {
             width: 80%;
             margin: auto;
@@ -82,7 +80,7 @@
             font-size: 1.2em;
             color: #666;
         }
-        /* 响应式设计 */
+
         @media (max-width: 768px) {
             .controls button {
                 width: 100%;
@@ -214,7 +212,7 @@
                 </header>
                 <!-- header-area-end -->
 
-    <!-- 主体内容 -->
+
     <div class="content">
         <div class="container text-center">
             <h1>Honeypot Data Visualization</h1>
@@ -233,7 +231,7 @@
     </div>
 
     <!-- JS -->
-     <!-- 引入 Chart.js -->
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/main.js"></script>
@@ -241,34 +239,34 @@
 
 
     <script>
-        // 在其他脚本之前添加
-        console.log('正在检查脚本加载...');
+      
+        console.log('checking load...');
         
         $(document).ready(function() {
-            console.log('jQuery 已加载');
+            console.log('jQuery load');
             
-            // 检查 loadAndProcessData 函数是否存在
+         
             if (typeof loadAndProcessData === 'function') {
-                console.log('chart.js 已正确加载');
+                console.log('chart.js load correct');
             } else {
-                console.error('chart.js 未正确加载');
+                console.error('chart.js load mistake');
             }
             
-            // 尝试加载数据
+    
             try {
                 loadAndProcessData();
             } catch (e) {
-                console.error('加载数据时出错:', e);
+                console.error('load data mistake:', e);
             }
         });
 
-        // 示例的 JavaScript 代码
+
         function loadChart(type) {
-            console.log(`加载${type}类型的图表，数据:`, processedData);
+            console.log(`load${type}chart，data:`, processedData);
             
-            // 添加数据验证
+         
             if (!processedData || !processedData[type]) {
-                console.error('无效的数据或类型:', type);
+                console.error('useless data:', type);
                 processedData = {
                     protocol: { 'NO_DATA': 1 },
                     country: { 'NO_DATA': 1 },
@@ -282,26 +280,26 @@
                 window.chartInstance.destroy();
             }
 
-            // 确保数据存在且是对象
+      
             const data = processedData[type] || { 'NO_DATA': 1 };
             
-            // 添加数据验证
+         
             try {
-                // 获取对应类型的前10个数据
+            
                 const sortedData = Object.entries(data)
                     .sort(([, a], [, b]) => b - a)
                     .slice(0, 10);
 
-                // 准备图表数据
+               
                 const labels = sortedData.map(([key]) => key);
                 const values = sortedData.map(([, value]) => value);
 
-                // 设置随机颜色
+               
                 const backgroundColors = labels.map(() => 
                     `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`
                 );
 
-                // 创建新图表
+            
                 window.chartInstance = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -343,11 +341,11 @@
                     }
                 });
                 
-                console.log('图表创建完成');
+                console.log('chart load finish');
                 
             } catch (error) {
-                console.error('创建图表时出错:', error);
-                // 显示错误图表
+                console.error('error in creat chart:', error);
+             
                 window.chartInstance = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -379,7 +377,7 @@
             
 
             $('#timeSlider').slider({
-                // jQuery UI Slider 配置选项
+               
             });
 });
 
@@ -390,7 +388,7 @@
 
 
 
-        // 修改时间滑块初始化部分
+      
         $(document).ready(function () {
             const START_DATE = new Date('2013-03-03');
             const END_DATE = new Date('2013-08-09');
@@ -400,7 +398,7 @@
                 min: START_DATE.getTime(),
                 max: END_DATE.getTime(),
                 values: [START_DATE.getTime(), END_DATE.getTime()],
-                step: 86400000, // 一天的毫秒数
+                step: 86400000, 
                 slide: function(event, ui) {
                     if (ui.values[0] >= ui.values[1]) {
                         return false;
@@ -409,28 +407,28 @@
                     const startDate = new Date(ui.values[0]);
                     const endDate = new Date(ui.values[1]);
                     
-                    // 更新时间范围显示
+                   
                     $("#timeRange").text(
                         `Selected Time Range: ${formatDate(startDate)} - ${formatDate(endDate)}`
                     );
                 },
                 stop: function(event, ui) {
-                    // 滑块停止时更新图表
+                    
                     const startDate = new Date(ui.values[0]);
                     const endDate = new Date(ui.values[1]);
                     
-                    // 调用 chart.js 中的更新函数
+                    
                     updateChartWithTimeRange(startDate, endDate);
                 }
             });
 
-            // 设置初始时间范围显示
+            
             $("#timeRange").text(
                 `Selected Time Range: ${formatDate(START_DATE)} - ${formatDate(END_DATE)}`
             );
         });
 
-        // 添加日期格式化辅助函数
+        
         function formatDate(date) {
             return date.toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -439,11 +437,11 @@
             });
         }
 
-        // 确保在页面加载完成后初始化数据
+        
         $(document).ready(function() {
-            // 加载数据并初始化图表
+            
             loadAndProcessData().then(() => {
-                // 初始化默认显示协议分布图
+                
                 loadChart('protocol');
             }).catch(error => {
                 console.error('Failed to load data:', error);
@@ -451,16 +449,16 @@
         });
 
         const jsonData = [
-            // 把cleaned_data.json的内容粘贴在这里
+            
         ];
 
-        // 修改loadAndProcessData函数调用
+        
         $(document).ready(function() {
-            // 直接使用内联数据
+            
             processData(jsonData);
         });
 
-        // 添加处理数据的函数
+        
         function processData(data) {
             processedData = {
                 protocol: {},
@@ -469,30 +467,30 @@
                 destinationPort: {}
             };
 
-            // 处理每条数据
+           
             data.forEach(item => {
-                // 处理协议数据
+                
                 if (item.proto) {
                     processedData.protocol[item.proto] = (processedData.protocol[item.proto] || 0) + 1;
                 }
                 
-                // 处理国家数据
+                
                 if (item.country) {
                     processedData.country[item.country] = (processedData.country[item.country] || 0) + 1;
                 }
                 
-                // 处理源端口数据
+                
                 if (item.spt) {
                     processedData.sourcePort[item.spt] = (processedData.sourcePort[item.spt] || 0) + 1;
                 }
                 
-                // 处理目标端口数据
+                
                 if (item.dpt) {
                     processedData.destinationPort[item.dpt] = (processedData.destinationPort[item.dpt] || 0) + 1;
                 }
             });
 
-            // 初始化默认图表
+            
             loadChart('protocol');
         }
     </script>
