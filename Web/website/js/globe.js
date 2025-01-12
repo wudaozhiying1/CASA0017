@@ -5,7 +5,6 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js?external=t
 const ARCS_DATA = [];
 let allData = [];
 
-<<<<<<< HEAD
 let lastDateRangeBtnClicked = null; // Store the last clicked date button
 
 
@@ -16,17 +15,6 @@ function parseCustomDate(dateString) {
     const fullYear = year < 100 ? 2000 + year : year; // Convert 2-digit year to 4-digit year
     return new Date(fullYear, month - 1, day, hour, minute); // Return Date object
 }
-=======
-let lastDateRangeBtnClicked = null;
-
-
-function parseCustomDate(dateString) {
-    const [datePart, timePart] = dateString.split(' '); 
-    const [month, day, year] = datePart.split('/').map(Number); 
-    const [hour, minute] = timePart.split(':').map(Number); 
-    const fullYear = year < 100 ? 2000 + year : year; 
-    return new Date(fullYear, month - 1, day, hour, minute);
->>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
 
 
 // Fetch output.json data and process it
@@ -50,17 +38,10 @@ fetch('./outputreal.json')
             endLat: item.hostlat,
             endLng: item.hostlong,
             color: item.color,
-<<<<<<< HEAD
             datetime: item.datetime // Keep original datetime field
         });
     });
     console.log('all data:', allData);  // Output all data
-=======
-            datetime: item.datetime 
-        });
-    });
-    console.log('all data:', allData);  
->>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
 
     console.log(ARCS_DATA);  // Output the processed data
 
@@ -199,17 +180,10 @@ fetch('./outputreal.json')
         });
 
         const countColorsInRange = (startDate, endDate) => {
-<<<<<<< HEAD
             const counts = { blue: 0, green: 0, red: 0 };  // Store counts for different colors
         
             allData.forEach(item => {
                 const arcDate = parseCustomDate(item.datetime); // Convert to Date object
-=======
-            const counts = { blue: 0, green: 0, red: 0 };  
-        
-            allData.forEach(item => {
-                const arcDate = parseCustomDate(item.datetime); 
->>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                 if (arcDate >= startDate && arcDate <= endDate) {
                     if (item.color === 'blue') counts.blue++;
                     else if (item.color === 'green') counts.green++;
@@ -243,7 +217,6 @@ fetch('./outputreal.json')
             `;
         };
 
-<<<<<<< HEAD
         // Calculate country counts within specified time range 
         const countCountriesInRange = (startDate, endDate) => {
             const countryCounts = {};  // Store counts for each country
@@ -252,16 +225,6 @@ fetch('./outputreal.json')
                 const arcDate = parseCustomDate(item.datetime); // Convert to Date object
                 if (arcDate >= startDate && arcDate <= endDate) {
                     const country = item.country; // Get country name
-=======
-      
-        const countCountriesInRange = (startDate, endDate) => {
-            const countryCounts = {};  
-
-            allData.forEach(item => {
-                const arcDate = parseCustomDate(item.datetime); 
-                if (arcDate >= startDate && arcDate <= endDate) {
-                    const country = item.country; 
->>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                     if (country) {
                         if (!countryCounts[country]) {
                             countryCounts[country] = 1;
@@ -272,39 +235,23 @@ fetch('./outputreal.json')
                 }
             });
 
-<<<<<<< HEAD
             // Convert countries and counts to array and sort by count
             const sortedCountries = Object.entries(countryCounts)
                 .sort((a, b) => b[1] - a[1]) // Sort by count in descending order
                 .slice(0, 3);  // Get top 3
-=======
-     
-            const sortedCountries = Object.entries(countryCounts)
-                .sort((a, b) => b[1] - a[1]) 
-                .slice(0, 3);  
->>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
 
             return sortedCountries;
         };
 
-<<<<<<< HEAD
         // Update display of top three most frequent countries
         const updateTopCountriesDisplay = (startDate, endDate) => {
             const topCountries = countCountriesInRange(startDate, endDate); // Get top 3 countries
             
             // Update first country and count
-=======
-       
-        const updateTopCountriesDisplay = (startDate, endDate) => {
-            const topCountries = countCountriesInRange(startDate, endDate); 
-        
-        
->>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
             const outputContainer1 = document.getElementById('ctry1lab');
             outputContainer1.innerHTML = topCountries[0] ? topCountries[0][0] : 'No data';
         
             const outputContainer4 = document.getElementById('ctry1ct');
-<<<<<<< HEAD
             outputContainer4.innerHTML = topCountries[0] ? topCountries[0][1] : 0; // Display first country count
         
             // Update second country and count
@@ -332,33 +279,6 @@ fetch('./outputreal.json')
                 const arcDate = parseCustomDate(item.datetime); // Convert to Date object
                 if (arcDate >= startDate && arcDate <= endDate) {
                     const host = item.host; // Get host name
-=======
-            outputContainer4.innerHTML = topCountries[0] ? topCountries[0][1] : 0; 
-        
-   
-            const outputContainer2 = document.getElementById('ctry2lab');
-            outputContainer2.innerHTML = topCountries[1] ? topCountries[1][0] : 'No data'; 
-        
-            const outputContainer5 = document.getElementById('ctry2ct');
-            outputContainer5.innerHTML = topCountries[1] ? topCountries[1][1] : 0; 
-        
- 
-            const outputContainer3 = document.getElementById('ctry3lab');
-            outputContainer3.innerHTML = topCountries[2] ? topCountries[2][0] : 'No data'; 
-        
-            const outputContainer6 = document.getElementById('ctry3ct');
-            outputContainer6.innerHTML = topCountries[2] ? topCountries[2][1] : 0; 
-        };
-
-
-        const countHostsInRange = (startDate, endDate) => {
-            const hostCounts = {};  
-
-            allData.forEach(item => {
-                const arcDate = parseCustomDate(item.datetime); 
-                if (arcDate >= startDate && arcDate <= endDate) {
-                    const host = item.host; 
->>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
                     if (host) {
                         if (!hostCounts[host]) {
                             hostCounts[host] = 1;
@@ -369,21 +289,14 @@ fetch('./outputreal.json')
                 }
             });
 
-<<<<<<< HEAD
             // Convert hosts and counts to array and sort by count
             const sortedHosts = Object.entries(hostCounts)
                 .sort((a, b) => b[1] - a[1]) // Sort by count in descending order
                 .slice(0, 3);  // Get top 3
-=======
-            const sortedHosts = Object.entries(hostCounts)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 3); 
->>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
 
             return sortedHosts;
         };
 
-<<<<<<< HEAD
         // Update display of top three most frequent hosts
         const updateTopHostsDisplay = (startDate, endDate) => {
             const topCountries = countHostsInRange(startDate, endDate); // Get top 3 hosts
@@ -408,42 +321,12 @@ fetch('./outputreal.json')
         
             const outputContainer6 = document.getElementById('host3ct');
             outputContainer6.innerHTML = topCountries[2] ? topCountries[2][1] : 0; // Display third host count
-=======
-
-        const updateTopHostsDisplay = (startDate, endDate) => {
-            const topCountries = countHostsInRange(startDate, endDate); 
-        
-
-            const outputContainer1 = document.getElementById('host1lab');
-            outputContainer1.innerHTML = topCountries[0] ? topCountries[0][0] : 'No data'; 
-        
-            const outputContainer4 = document.getElementById('host1ct');
-            outputContainer4.innerHTML = topCountries[0] ? topCountries[0][1] : 0; 
-        
-            
-            const outputContainer2 = document.getElementById('host2lab');
-            outputContainer2.innerHTML = topCountries[1] ? topCountries[1][0] : 'No data'; 
-        
-            const outputContainer5 = document.getElementById('host2ct');
-            outputContainer5.innerHTML = topCountries[1] ? topCountries[1][1] : 0; 
-        
-            
-            const outputContainer3 = document.getElementById('host3lab');
-            outputContainer3.innerHTML = topCountries[2] ? topCountries[2][0] : 'No data'; 
-        
-            const outputContainer6 = document.getElementById('host3ct');
-            outputContainer6.innerHTML = topCountries[2] ? topCountries[2][1] : 0; 
->>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         };
         
         
 
         const handleDateRangeBtnClick = (buttonId, startDate, endDate) => {
-<<<<<<< HEAD
             // Check if the same button was clicked
-=======
-            
->>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
             if (lastDateRangeBtnClicked === buttonId) return;
 
             lastDateRangeBtnClicked = buttonId;
@@ -458,11 +341,7 @@ fetch('./outputreal.json')
         };
         
 
-<<<<<<< HEAD
     
-=======
-        
->>>>>>> 4e168a1c4125fa8ab54ce42fa48f50bf1dde33b7
         document.getElementById('dateRangeBtn1').addEventListener('click', () => {
             const startDate = new Date('2013-03-01T00:00:00');
             const endDate = new Date('2013-03-31T23:59:59');
