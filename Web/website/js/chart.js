@@ -1,4 +1,4 @@
-// 存储处理后的数据
+
 let processedData = {
     protocol: {},
     country: {},
@@ -6,20 +6,20 @@ let processedData = {
     destinationPort: {}
 };
 
-// 添加全局变量来存储原始数据
+
 let originalData = [];
 
-// 添加时间范围变量
+
 const START_DATE = new Date('2013-03-03');
 const END_DATE = new Date('2013-08-09');
 
-// 添加一个全局变量来跟踪当前选中的图表类型
+
 let currentChartType = 'protocol';
 
-// 加载并处理 JSON 数据
+
 async function loadAndProcessData() {
     try {
-        console.log('开始加载数据...');
+        console.log('loading...');
         const response = await fetch('/node/data/cleaned_data.json');
         
         if (!response.ok) {
@@ -27,46 +27,46 @@ async function loadAndProcessData() {
         }
         
         const data = await response.json();
-        console.log('数据数量:', data.length);
-        console.log('原始数据示例:', data[0]);
+        console.log('data number:', data.length);
+        console.log('data show:', data[0]);
 
-        // 直接使用原始数据，不需要额外的时间戳处理
+        
         originalData = data;
 
-        // 初始处理所有数据
+        
         processData(originalData);
 
     } catch (error) {
-        console.error('数据加载失败:', error);
+        console.error('load defalut:', error);
         throw error;
     }
 }
 
-// 获取排序后的前10个数据
+
 function getTop10Data(dataObject) {
-    console.log('开始处理Top10数据，原始数据:', dataObject);
+    console.log('Start processing Top10 data, raw data:', dataObject);
     
     const result = Object.entries(dataObject)
-        .sort(([,a], [,b]) => b - a)  // 按数值降序排序
-        .slice(0, 10)  // 获取前10个
+        .sort(([,a], [,b]) => b - a)  
+        .slice(0, 10)  
         .reduce((obj, [key, value]) => {
             obj.labels.push(key);
             obj.values.push(value);
             return obj;
         }, { labels: [], values: [] });
     
-    console.log('Top10处理结果:', result);
+    console.log('Top10 results:', result);
     return result;
 }
 
 function loadChart(type) {
-    console.log(`加载${type}类型的图表`);
+    console.log(`load ${type} chart`);
     
-    // 验证并更新当前图表类型
+    
     if (type && ['protocol', 'country', 'sourcePort', 'destinationPort'].includes(type)) {
         currentChartType = type;
     } else {
-        console.error('无效的图表类型:', type);
+        console.error('Invalid chart types:', type);
         return;
     }
     
@@ -75,21 +75,21 @@ function loadChart(type) {
         window.chartInstance.destroy();
     }
 
-    // 确保数据存在
+   
     if (!processedData || !processedData[type]) {
-        console.error('数据不可用于类型:', type);
+        console.error('Data not available for type:', type);
         return;
     }
 
-    // 获取对应类型的前10个数据
+    
     const chartData = getTop10Data(processedData[type]);
 
-    // 设置随机颜色
+    
     const backgroundColors = chartData.labels.map(() => 
         `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`
     );
 
-    // 创建新图表
+    
     window.chartInstance = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -131,38 +131,38 @@ function loadChart(type) {
         }
     });
     
-    console.log('图表创建完成');
+    console.log('Chart creation complete');
 }
 
-// 添加基于时间范围更新图表的函数
+
 function updateChartWithTimeRange(startDate, endDate) {
-    console.log('更新时间范围:', startDate, endDate);
-    console.log('当前图表类型:', currentChartType);
+    console.log('Updated timeframe:', startDate, endDate);
+    console.log('Current Chart Type:', currentChartType);
     
     try {
-        // 确保 originalData 存在
+        
         if (!originalData || !Array.isArray(originalData)) {
-            console.error('原始数据不可用');
+            console.error('Raw data not available');
             processData([{ proto: 'NO_DATA', country: 'NO_DATA', spt: 'NO_DATA', dpt: 'NO_DATA' }]);
             loadChart(currentChartType);
             return;
         }
 
-        // 将开始日期设置为当天的开始（00:00:00）
+       
         const start = new Date(startDate);
         start.setHours(0, 0, 0, 0);
         
-        // 将结束日期设置为当天的结束（23:59:59）
+        
         const end = new Date(endDate);
         end.setHours(23, 59, 59, 999);
         
-        console.log('筛选时间范围:', 
-            start.toISOString(), '至', 
+        console.log('Screening timeframe:', 
+            start.toISOString(), 'to', 
             end.toISOString(),
-            '图表类型:', currentChartType
+            'Type of chart:', currentChartType
         );
 
-        // 过滤在时间范围内的数据
+        
         const filteredData = originalData.filter(item => {
             if (!item || !item.datetime) {
                 return false;
@@ -172,21 +172,21 @@ function updateChartWithTimeRange(startDate, endDate) {
             return itemDate >= start && itemDate <= end;
         });
 
-        console.log('筛选后的数据数量:', filteredData.length);
+        console.log('Number of filtered data:', filteredData.length);
         
         if (filteredData.length === 0) {
-            console.log('选定时间范围内没有数据');
+            console.log('No data available for the selected time frame');
             processData([{ proto: 'NO_DATA', country: 'NO_DATA', spt: 'NO_DATA', dpt: 'NO_DATA' }]);
         } else {
             processData(filteredData);
         }
 
-        // 确保使用正确的图表类型更新图表
-        console.log('更新图表，使用类型:', currentChartType);
+        
+        console.log('Update charts, use types:', currentChartType);
         loadChart(currentChartType);
 
     } catch (error) {
-        console.error('更新图表时出错:', error);
+        console.error('Error updating chart:', error);
         processData([{ proto: 'ERROR', country: 'ERROR', spt: 'ERROR', dpt: 'ERROR' }]);
         loadChart(currentChartType);
     }
@@ -198,12 +198,12 @@ function initializeTimeSlider() {
         min: START_DATE.getTime(),
         max: END_DATE.getTime(),
         values: [START_DATE.getTime(), END_DATE.getTime()],
-        step: 86400000, // 一天的毫秒数
+        step: 86400000, 
         slide: function(event, ui) {
             const startDate = new Date(ui.values[0]);
             const endDate = new Date(ui.values[1]);
             
-            // 更新时间范围显示（只显示日期部分）
+            
             $("#timeRange").text(
                 `Selected Time Range: ${formatDate(startDate)} - ${formatDate(endDate)}`
             );
@@ -215,7 +215,7 @@ function initializeTimeSlider() {
         }
     });
 
-    // 设置初始时间范围显示
+   
     $("#timeRange").text(
         `Selected Time Range: ${formatDate(START_DATE)} - ${formatDate(END_DATE)}`
     );
@@ -223,7 +223,7 @@ function initializeTimeSlider() {
 
 function processData(data) {
     if (!data || !Array.isArray(data)) {
-        console.error('无效的数据输入');
+        console.error('Invalid data entry');
         data = [{
             proto: 'INVALID_DATA',
             country: 'INVALID_DATA',
@@ -232,9 +232,9 @@ function processData(data) {
         }];
     }
 
-    console.log('处理数据，数据量:', data.length);
+    console.log('Processing data, volume of data:', data.length);
     
-    // 重置处理后的数据对象
+
     processedData = {
         protocol: {},
         country: {},
@@ -242,11 +242,11 @@ function processData(data) {
         destinationPort: {}
     };
 
-    // 处理每条数据
+
     data.forEach(item => {
         if (!item) return;
         
-        // 使用空值检查和默认值
+
         const proto = (item.proto || 'Unknown').toString();
         const country = (item.country || 'Unknown').toString();
         const spt = (item.spt || 'Unknown').toString();
@@ -258,16 +258,16 @@ function processData(data) {
         processedData.destinationPort[dpt] = (processedData.destinationPort[dpt] || 0) + 1;
     });
 
-    // 确保每个类别至少有一个数据
+ 
     if (Object.keys(processedData.protocol).length === 0) processedData.protocol['NO_DATA'] = 1;
     if (Object.keys(processedData.country).length === 0) processedData.country['NO_DATA'] = 1;
     if (Object.keys(processedData.sourcePort).length === 0) processedData.sourcePort['NO_DATA'] = 1;
     if (Object.keys(processedData.destinationPort).length === 0) processedData.destinationPort['NO_DATA'] = 1;
 
-    console.log('数据处理完成，统计结果:', processedData);
+    console.log('Data processing completed, statistical results:', processedData);
 }
 
-// 添加日期格式化辅助函数
+
 function formatDate(date) {
     return date.toLocaleDateString('en-US', {
         year: 'numeric',
@@ -276,15 +276,15 @@ function formatDate(date) {
     });
 }
 
-// 修改按钮点击事件处理函数（在 HTML 中）
+
 function initializeButtons() {
     document.querySelectorAll('.controls button').forEach(button => {
         button.addEventListener('click', function() {
-            // 获取按钮文本并转换为对应的类型
+  
             const buttonText = this.textContent.toLowerCase();
             let type;
             
-            // 根据按钮文本设置正确的图表类型
+        
             if (buttonText.includes('protocol')) {
                 type = 'protocol';
             } else if (buttonText.includes('country')) {
@@ -295,25 +295,25 @@ function initializeButtons() {
                 type = 'destinationPort';
             }
             
-            // 更新当前图表类型
+      
             currentChartType = type;
-            console.log('切换到图表类型:', currentChartType);
+            console.log('Switch to chart type:', currentChartType);
             
-            // 加载新的图表
+       
             loadChart(type);
         });
     });
 }
 
-// 在页面加载完成后初始化
+
 $(document).ready(function() {
-    // 设置默认图表类型
+
     currentChartType = 'protocol';
     
-    // 初始化按钮
+
     initializeButtons();
     
-    // 加载初始数据
+
     loadAndProcessData().then(() => {
         loadChart(currentChartType);
     }).catch(error => {
