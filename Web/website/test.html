@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+		<!-- CSS here -->
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/animate.min.css">
+        <link rel="stylesheet" href="./css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="./css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Honeypot Introduction</title>
+        <link rel="stylesheet" href="style.css">
+<style>
+    body {
+    font-family: 'Inter', sans-serif;
+    color: #99A2AC;
+    background-color: #00172F;
+    margin: 0;
+    padding: 0;
+    }
+    .introduction.container {
+        display: flex;
+    }
+    .introduction.sidebar {
+        flex: 0 0 400px;
+        background: #011529;
+        padding: 20px;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+        padding-top: 150px;
+    }
+    .introduction.sidebar h2 {
+        font-family: 'Cuprum', sans-serif;
+        color: #F9C747;
+        font-size: 20px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        
+    }
+    .introduction.sidebar a {
+        display: block;
+        color: #F9C747;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 10px 0;
+        line-height: 3;
+    }
+    .introduction.sidebar a:hover {
+        color: #FEFFFE;
+    }
+    .introduction.content {
+        flex: 1;
+        padding: 40px;
+        background-color: #00172F;
+        margin-left: 20px;
+        border-left: 1px solid #192E44;
+        padding-top: 100px;
+        line-height: 2.5;
+    }
+    .introduction.content h1 {
+        font-family: 'Cuprum', sans-serif;
+        color: #FEFFFE;
+        font-size: 50px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+    .introduction.content p {
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        line-height: 2.5;
+        color: #99A2AC;
+        margin: 20px 0;
+    }
+    .introduction.section {
+        margin-bottom: 40px;
+    }
+    .introduction.section h2 {
+        font-family: 'Inter', sans-serif;
+        font-size: 25px;
+        line-height: 1.8;
+        color: #99A2AC;
+        margin: 20px 0;
+    }
+    .introduction.section h3 {
+        font-family: 'Inter', sans-serif;
+        font-size: 20px;
+        line-height: 1.8;
+        color: #99A2AC;
+        margin: 20px 0;
+    }
+</style>
+</head>
+ <!-- preloader -->
+ <div id="preloader">
+    <div id="loading-center">
+        <div id="loading-center-absolute">
+            <div class="object" id="object_one"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_three"></div>
+        </div>
+    </div>
+</div>
+<!-- preloader-end -->
+
+<!-- Scroll-top -->
+<button class="scroll-top scroll-to-target" data-target="html">
+    <i class="fas fa-angle-up"></i>
+</button>
+<!-- Scroll-top-end-->
+
+<!-- header-area -->
+<header>
+    <div id="sticky-header" class="menu-area transparent-header header-style-two">
+        <div class="container custom-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
+                    <div class="menu-wrap">
+                        <nav class="menu-nav">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="./img/logo/logo.png" alt="Logo">
+                                </a>
+                            </div>
+                            <div class="navbar-wrap main-menu d-none d-lg-flex">
+                                <ul class="navigation">
+                                    <li class="function-menu"><a href="index.html">Home</a></li>
+                                    <li class="function-menu"><a href="#">Pages</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="test.html">Introduction</a></li>
+                                            <li><a href="Background.html">Background</a></li>
+                                            <li><a href="Mapping.html">Mapping</a></li>
+                                            <li><a href="chart.html">Visualizing</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="offcanvas-btn">
+                                <a href="#"><img src="./img/icons/dots.png" alt="Icon"></a>
+                            </div>
+                        </nav>
+                    </div>
+                    <!-- Mobile Menu  -->
+                    <div class="mobile-menu">
+                        <nav class="menu-box">
+                            <div class="nav-logo"><a href="index.html"><img src="./img/logo/logo.png" alt="" title=""></a>
+                            </div>
+                        </nav>
+                    </div>
+                    <!-- End Mobile Menu -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- offCanvas-start -->
+    <div class="offCanvas-wrap">
+        <div class="offCanvas-toggle"><img src="./img/icons/cross.svg" alt="icon"></div>
+        <div class="offCanvas-body">
+            <div class="offCanvas-content">
+                <h3 class="title">HoneyPots defence starts here for both commercial and personal</h3>
+                <p>HoneyPots is a network security technique used to deceive and lure attackers in order to protect the actual system and data.。</p>
+            </div>
+            <div class="offcanvas-contact footer-contact-info">
+                <h4 class="email">Donghao.zhang.24@ucl.ac.uk</h4>
+                <h4 class="email">Yuezhu.24@ucl.ac.uk</h4>
+                <h4 class="email">Sirui.Luo.24@ucl.ac.uk</h4>
+                <p>Connect Environment, 1 Pool Street, UCL, <br> London, United Kingdom</p>
+            </div>
+        </div>
+    </div>
+    <!-- offCanvas-end -->
+
+</header>
+<!-- header-area-end -->
+
+
+<body>
+    <div class="introduction container">
+        <nav class="introduction sidebar">
+            <h2>Contents</h2>
+            <a href="#what-is-honeypot">What is a Honeypot?</a>
+            <a href="#types">Types of Honeypots</a>
+            <a href="#uses">What Are Honeypots Used For?</a>
+            <a href="#how-they-work">How Do Honeypots Work?</a>
+            <a href="#examples">Honeypot Examples</a>
+            <a href="#risks">Benefits and Risks</a>
+        </nav>
+        <div class="introduction content">
+            <div id="what-is-honeypot" class="introduction section">
+                <h1>What is a Honeypot?</h1>
+                <p>Honeypot is an important cybersecurity tool used to attract attackers to attack disguised targets as a way to record their behavior and techniques, thereby improving overall network defenses. <br><br>Honeypots are 
+                    usually disguised as real systems, services or data resources that attackers mistake for legitimate targets and thus unknowingly interact with them. <br><br>The unique value of this technique is that it not only helps security 
+                    teams understand the source of the threat, but also provides rich intelligence that reveals the attacker's motivations, tools, and tactics.<br><br>
+
+                    While the concept of honeypots is simple, their application scenarios are extensive. By deploying honeypots, organizations can gain real-time insight into emerging threat patterns and trends while testing the effectiveness 
+                    of existing security systems. <br><br>Honeypots not only detect and analyze attacks, but also protect actual systems by distracting attackers, thus playing a dual role in proactive defense and threat intelligence gathering.
+                    </p>
+            </div>
+
+            <div id="types" class="introduction section">
+                <h1>Types of Honeypots</h1>
+                <p>Honeypot is an important cybersecurity technology that helps security teams analyze threats and strengthen defenses by simulating real systems to lure and observe 
+                    potential attacks. Honeypots can be categorized into the following categories based on their interaction level and specific use:
+                    <h2>1.Pure honeypots</h2>
+                    A pure honeypot is a type of honeypot used exclusively for research and data collection, usually deployed in a separate isolated environment focused on capturing attacker behavior and tactics. It is not connected to 
+                    production systems and therefore has limited protection against real systems, but is able to delve deeper into attack patterns and provide important support for threat intelligence, commonly found in academic research 
+                    organizations and security labs.
+                    <h2>2.low-interaction honeypots</h2>
+                    Low-interaction honeypots focus on detecting automated attacks such as scanner probes or worm attacks by emulating simple services or open ports. It is easy to deploy and low-cost for initial threat detection and widely 
+                    used for network border protection, but its data collection capability is weak due to limited interaction with attackers, making it difficult to provide in-depth attack analysis.
+                    <h2>3.high-interaction honeypots</h2>
+                    Highly interactive honeypots emulate complete operating system and service environments, allowing attackers to fully interact with them and thus record every detail of the attack process. Such honeypots are capable of 
+                    capturing advanced attack behaviors and are suitable for studying complex threats and Advanced Persistent Attacks (APTs), but they are expensive to deploy and maintain and require strict isolation to prevent the honeypot 
+                    itself from being exploited by attackers.
+                    </p>
+            </div>
+
+            <div id="uses" class="introduction section">
+                <h1>What Are Honeypots Used For?</h1>
+                <p>Honeypots are usually used as:
+                    <h2>1.Research Honeypot</h2>
+                    
+                    Research-oriented honeypots focus on studying new types of threats and analyzing attack techniques and strategies. They are commonly used by academic research institutions, government departments, and security labs in large 
+                    enterprises to gain insights into emerging attack patterns and enhance overall cybersecurity knowledge.
+                    <h2>2.Production Honeypot</h2>
+                    
+                    Production-oriented honeypots are deployed in real production environments to detect and block attacks in real-time. They offer the advantage of monitoring threats within actual networks, thereby reducing overall security risks. 
+                    These honeypots are typically positioned at critical nodes or in traffic-intensive areas of production networks to maximize their effectiveness in identifying and mitigating threats.
+            </div>
+
+            <div id="how-they-work" class="introduction section">
+                <h1>How Do Honeypots Work?</h1>
+                <div style="position: relative;">
+                    <img src="./img/bg/HoneyPot.png" alt="Honeypot Workflow" style="float: right; max-width: 300px; margin-left: 20px; margin-bottom: 10px;">
+                    <p>
+                        Honeypots are designed to attract the attention of threat actors by simulating real computer systems, applications, or data resources designed to look like real targets. For example, a honeypot can masquerade as an organization's 
+                        database or customer information management system, which is a frequent target for attackers trying to compromise. Once attackers begin interacting with the honeypot, the honeypot is able to record their behavior, analyze attack 
+                        patterns, and help the organization improve its cybersecurity strategy.
+                    </p>
+                    <p>
+                        The appeal of honeypots lies in their intentionally designed security vulnerabilities, such as open ports, weak passwords, or services that respond to port scans. While these vulnerabilities can lure attackers, the design needs 
+                        to be stealthy enough to avoid being recognized as a trap. The primary role of honeypots is not to directly defend against attacks but to serve as an information-gathering tool to help organizations identify potential threats, 
+                        discover security vulnerabilities, and anticipate attack tactics in advance.
+                    </p>
+                    <p>
+                        By analyzing incoming honeypot traffic, organizations can understand the source of the attacker, the means of attack, the data or applications of interest, and assess the effectiveness of existing security defenses. This information 
+                        provides an important basis for the organization's security protection strategy.
+                    </p>
+                </div>
+                <h2>Honeywalls vs Honeynets</h2>
+                    <p>
+                        Honeywalls is a tool for monitoring network traffic and redirecting it to honeypots. It filters and controls the traffic entering the honeypot, ensuring that attacks do not further impact real production systems.
+                    </p>
+                    <p>
+                    Honeynets are virtual networks of multiple honeypots used to simulate more complex real network environments.Honeynets typically contain multiple virtual systems and services that work in conjunction with each other to 
+                    confuse attackers and gather comprehensive data on attack behavior. Honeynets provide a more realistic environment that can attract more sophisticated attacks than a single honeypot.
+                    </p>
+                    <p>
+                    Security teams can inject vulnerabilities into Honeynets to make it easier for attackers to enter the trap and thus gain more intelligence on attack behavior. Honeynets are especially beneficial in large, complex networks, not only distracting 
+                    attackers, but also helping organizations analyze and identify potentially advanced threats, supporting the optimization of security measures.
+                    </p>
+            </div>
+            
+
+            <div id="examples" class="introduction section">
+                <h1>Honeypot Examples</h1>
+                <h2>Spam Traps & Email Traps</h2>
+                <p>
+                    Spam traps are set up by using fake email addresses that are deliberately published in obscure or hard-to-find places, such as hidden sections of websites, metadata, or even DNS records. These email addresses are not used for legitimate communication, ensuring that any emails received are almost certainly spam.
+                </p>
+                <p>   
+                    Spammers, who use automated tools called email harvesters to scrape addresses from websites, will inevitably find and target these traps. Once the spammer sends an email to the trap, the honeypot records:
+                </p>
+                <ul>
+                    <li>The sender's IP address</li>
+                    <li>The content of the email</li>
+                    <li>The spammer's behavior patterns, such as frequency, volume, and the use of certain keywords</li>
+                </ul>
+                <h2>Types of Spam Traps</h2>
+                <li>Pristine Spam Traps:</li>
+                <p>
+                    These are email addresses that have never been used for legitimate communication. They are often created specifically for spam-catching purposes.
+
+                </p>
+                <p>
+                    Example: An organization publishes <i>"hiddenemail@example.com"</i> on a website. When a spammer scrapes and targets this address, their activity is logged.
+                </p>
+                <li>Recycled Spam Traps:</li>
+                <p>
+                    These are formerly valid email addresses that are no longer in use. Email service providers or administrators reactivate these addresses to catch spammers targeting old, abandoned accounts.
+                </p>
+                <p>
+                    Example: An old employee's email,<i>"oldemployee@example.com"</i> is reactivated as a spam trap. Spammers targeting this address are flagged.
+
+                </p>
+                <li>Typo-Based Spam Traps:</li>
+                <p>
+                    These traps are set up by using common typographical errors of legitimate email addresses.
+                </p>
+                <p>
+                    Example: Instead of <i>"john.doe@example.com" </i>a spam trap may use <i>"jon.doe@example.com"</i> Spammers mistakenly sending to this typo address are caught.
+                </p>
+
+            </div>
+            
+
+            <div id="risks" class="introduction section">
+                <h1>Benefits and Risks</h1>
+                <h2>Benefits of Honeypots:</h2>
+                <h3>1.Threat Intelligence Collection</h3>
+                <p>Honeypots provide invaluable insights into the behavior of attackers. By observing interactions, organizations can gather detailed data on attack methods, tools, and strategies, which can then be used to strengthen overall cybersecurity measures.
+                </p>
+                <h3>2.Early Detection of Threats</h3>
+                <p>Honeypots can identify malicious activities early by attracting attackers. This allows organizations to detect vulnerabilities and potential security threats before they affect critical systems.
+                </p>
+                <h3>3.Distraction for Attackers</h3>
+                <p>
+                    By luring attackers away from production systems, honeypots reduce the likelihood of sensitive systems being directly targeted. This provides an additional layer of security for real assets.
+                </p>
+                <h3>4.Cost-Effective Security Testing</h3>
+                <p>
+                    Honeypots are relatively low-cost tools for testing and evaluating the effectiveness of an organization’s cybersecurity defenses. They can simulate real-world attacks without putting production systems at risk.
+                </p>
+                <h3>5.Incident Response Improvement</h3>
+                <p>
+                    Data collected from honeypots enhances an organization’s incident response capabilities. Security teams can develop more effective mitigation strategies by understanding attack behaviors.
+                </p>
+                <h2>Risks of Honeypots:</h2>
+                <h3>1.Exploitation by Attackers</h3>
+                <p>
+                    If not properly isolated, attackers can use a compromised honeypot as a stepping stone to launch attacks on other systems within the network, increasing the risk to real assets.
+                </p>
+                <h3>2.False Sense of Security</h3>
+                <p>
+                    Solely relying on honeypots for security may lead to complacency. Honeypots are just one component of a comprehensive cybersecurity strategy and should not replace other essential security measures.
+                </p>
+                <h3>3.Resource Intensity</h3>
+                <p>
+                    High-interaction honeypots, in particular, require significant resources to deploy and maintain. Monitoring and analyzing the collected data can be time-consuming and expensive.
+                </p>
+                <h3>4.Legal and Ethical Concerns</h3>
+                <p>
+                    Monitoring and capturing data from attackers might raise legal and ethical questions, especially if sensitive information about individuals or third parties is collected unintentionally.
+                </p>
+                <h3>5.Detection by Advanced Attackers</h3>
+                <p>Sophisticated attackers can often identify honeypots by their artificial behavior or intentional vulnerabilities. Once identified, the honeypot becomes ineffective and loses its purpose.
+                </p>
+            </div>
+        </div>
+    </div>
+            <!-- footer-start -->
+            <footer class="footer-area footer-bg" data-background="assets/img/bg/footer_bg.jpg">
+                <div class="container">
+                    <div class="footer-top-wrap">
+                        <div class="row justify-content-between">
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="footer-widget">
+                                    <div class="footer-contact-info">
+                                        <h4 class="email">Donghao.zhang.24@ucl.ac.uk</h4>
+                                        <h5 class="email">Yuezhu.24@ucl.ac.uk</h5>
+                                        <h6 class="email">Sirui.Luo.24@ucl.ac.uk</h6>
+                                        <p>Connect Environment, 1 Pool Street, UCL, <br> London, United Kingdom</p>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-xl-2 col-lg-3 col-md-6 col-sm-4 column-3">
+                                <div class="footer-widget">
+                                    <h4 class="fw-title">Our Services</h4>
+                                    <ul class="footer-link no-wrap">
+                                        <li><a href="test.html">"The Origins of Cyber Attacks: Understanding the Role of Honeypots"</a></li>
+                                        <li><a href="Background.html">"Unveiling the Global Threat: Insights into Honeypot Attacks"</a></li>
+                                        <li><a href="Mapping.html">"Mapping Web of Cyber Threats: Explore Attack Patterns and Relationships"</a></li>
+                                        <li><a href="chart.html">"Visualizing Cyber Attacks: Data Insights and Rankings at a Glance"</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+    		<!-- JS here -->
+            <script src="./js/vendor/jquery-3.6.0.min.js"></script>
+            <script src="./js/bootstrap.min.js"></script>
+            <script src="./js/main.js"></script>
+</body>
+</html>

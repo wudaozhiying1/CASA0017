@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Cycure - Cyber Security HTML Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.png">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/animate.min.css">
+    <link rel="stylesheet" href="./css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- 引入 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- 引入 jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <!-- 引入 jQuery UI 样式 -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+
+
+
+
+
+
+
+    <style>
+        /* 确保 body 和 html 没有默认的边距和填充 */
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 固定页眉样式 */
+
+        /* 主体内容，添加上边距以避免与固定页眉重叠 */
+        .content {
+            margin-top: 80px; /* 根据页眉的实际高度进行调整 */
+            padding: 20px;
+        }
+
+        /* 滚动到锚点时，避免内容被固定页眉遮挡 */
+        html {
+            scroll-padding-top: 80px; /* 与页眉高度相同 */
+        }
+
+        /* 其他样式 */
+        #chartContainer {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            height: 500px;
+            position: relative;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px;
+            flex-wrap: wrap;
+        }
+        .controls button {
+            min-width: 200px;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .controls button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2em;
+            color: #666;
+        }
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .controls button {
+                width: 100%;
+                margin: 5px 0;
+            }
+            #chartContainer {
+                width: 95%;
+            }
+        }
+        #timeSlider {
+            margin: 20px auto;
+            width: 80%;
+            height: 4px;
+            background: #e0e0e0;
+            border: none;
+            border-radius: 2px;
+        }
+
+        .ui-slider-range {
+            background: #2196F3;
+            height: 100%;
+            position: absolute;
+        }
+
+        .ui-slider-handle {
+            background: #2196F3 !important;
+            border: 2px solid #fff !important;
+            border-radius: 50% !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+            outline: none !important;
+        }
+
+        .ui-slider-handle:hover {
+            background: #1976D2 !important;
+        }
+
+        #timeRange {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+        <!-- preloader -->
+                <div id="preloader">
+                    <div id="loading-center">
+                        <div id="loading-center-absolute">
+                            <div class="object" id="object_one"></div>
+                            <div class="object" id="object_two"></div>
+                            <div class="object" id="object_three"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- preloader-end -->
+        
+                <!-- Scroll-top -->
+                <button class="scroll-top scroll-to-target" data-target="html">
+                    <i class="fas fa-angle-up"></i>
+                </button>
+                <!-- Scroll-top-end-->
+        
+                <!-- header-area -->
+                <header>
+                    <div id="sticky-header" class="menu-area transparent-header header-style-two">
+                        <div class="container custom-container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
+                                    <div class="menu-wrap">
+                                        <nav class="menu-nav">
+                                            <div class="logo">
+                                                <a href="index.html">
+                                                    <img src="./img/logo/logo.png" alt="Logo">
+                                                </a>
+                                            </div>
+                                            <div class="navbar-wrap main-menu d-none d-lg-flex">
+                                                <ul class="navigation">
+                                                    <li class="function-menu"><a href="index.html">Home</a></li>
+                                                    <li class="function-menu"><a href="#">Pages</a>
+                                                        <ul class="sub-menu">
+                                                            <li><a href="test.html">Introduction</a></li>
+                                                            <li><a href="Background.html">Background</a></li>
+                                                            <li><a href="Mapping.html">Mapping</a></li>
+                                                            <li><a href="chart.html">Visualizing</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+        
+                                            <div class="offcanvas-btn">
+                                                <a href="#"><img src="./img/icons/dots.png" alt="Icon"></a>
+                                            </div>
+                                        </nav>
+                                    </div>
+                                    <!-- Mobile Menu  -->
+                                    <div class="mobile-menu">
+                                        <nav class="menu-box">
+                                            <div class="nav-logo"><a href="index.html"><img src="./img/logo/logo.png" alt="" title=""></a>
+                                            </div>
+                                        </nav>
+                                    </div>
+                                    <!-- End Mobile Menu -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- offCanvas-start -->
+                    <div class="offCanvas-wrap">
+                        <div class="offCanvas-toggle"><img src="./img/icons/cross.svg" alt="icon"></div>
+                        <div class="offCanvas-body">
+                            <div class="offCanvas-content">
+                                <h3 class="title">HoneyPots defence starts here for both commercial and personal</h3>
+                                <p>HoneyPots is a network security technique used to deceive and lure attackers in order to protect the actual system and data.。</p>
+                            </div>
+                            <div class="offcanvas-contact footer-contact-info">
+                                <h4 class="email">Donghao.zhang.24@ucl.ac.uk</h4>
+                                <h4 class="email">Yuezhu.24@ucl.ac.uk</h4>
+                                <h4 class="email">Sirui.Luo.24@ucl.ac.uk</h4>
+                                <p>Connect Environment, 1 Pool Street, UCL, <br> London, United Kingdom</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- offCanvas-end -->
+        
+                </header>
+                <!-- header-area-end -->
+
+    <!-- 主体内容 -->
+    <div class="content">
+        <div class="container text-center">
+            <h1>Honeypot Data Visualization</h1>
+            <div class="controls">
+                <button class="btn btn-primary" onclick="loadChart('protocol')">Protocol Distribution</button>
+                <button class="btn btn-primary" onclick="loadChart('country')">Country Distribution</button>
+                <button class="btn btn-primary" onclick="loadChart('sourcePort')">Source Port Frequency</button>
+                <button class="btn btn-primary" onclick="loadChart('destinationPort')">Destination Port Frequency</button>
+            </div>
+            <div id="chartContainer">
+                <canvas id="honeypotChart"></canvas>
+            </div>
+            <div id="timeSlider"></div>
+            <p id="timeRange">Selected Time Range: All</p>
+        </div>
+    </div>
+
+    <!-- JS -->
+     <!-- 引入 Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/chart.js"></script>
+
+
+    <script>
+        // 在其他脚本之前添加
+        console.log('正在检查脚本加载...');
+        
+        $(document).ready(function() {
+            console.log('jQuery 已加载');
+            
+            // 检查 loadAndProcessData 函数是否存在
+            if (typeof loadAndProcessData === 'function') {
+                console.log('chart.js 已正确加载');
+            } else {
+                console.error('chart.js 未正确加载');
+            }
+            
+            // 尝试加载数据
+            try {
+                loadAndProcessData();
+            } catch (e) {
+                console.error('加载数据时出错:', e);
+            }
+        });
+
+        // 示例的 JavaScript 代码
+        function loadChart(type) {
+            console.log(`加载${type}类型的图表，数据:`, processedData);
+            
+            // 添加数据验证
+            if (!processedData || !processedData[type]) {
+                console.error('无效的数据或类型:', type);
+                processedData = {
+                    protocol: { 'NO_DATA': 1 },
+                    country: { 'NO_DATA': 1 },
+                    sourcePort: { 'NO_DATA': 1 },
+                    destinationPort: { 'NO_DATA': 1 }
+                };
+            }
+
+            const ctx = document.getElementById('honeypotChart').getContext('2d');
+            if (window.chartInstance) {
+                window.chartInstance.destroy();
+            }
+
+            // 确保数据存在且是对象
+            const data = processedData[type] || { 'NO_DATA': 1 };
+            
+            // 添加数据验证
+            try {
+                // 获取对应类型的前10个数据
+                const sortedData = Object.entries(data)
+                    .sort(([, a], [, b]) => b - a)
+                    .slice(0, 10);
+
+                // 准备图表数据
+                const labels = sortedData.map(([key]) => key);
+                const values = sortedData.map(([, value]) => value);
+
+                // 设置随机颜色
+                const backgroundColors = labels.map(() => 
+                    `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`
+                );
+
+                // 创建新图表
+                window.chartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: `Top 10 ${type.charAt(0).toUpperCase() + type.slice(1)} Distribution`,
+                            data: values,
+                            backgroundColor: backgroundColors,
+                            borderColor: backgroundColors.map(color => color.replace('0.5', '1')),
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: type.charAt(0).toUpperCase() + type.slice(1)
+                                }
+                            },
+                            y: { 
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Number of Occurrences'
+                                }
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: `Top 10 ${type.charAt(0).toUpperCase() + type.slice(1)} Distribution`
+                            },
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+                
+                console.log('图表创建完成');
+                
+            } catch (error) {
+                console.error('创建图表时出错:', error);
+                // 显示错误图表
+                window.chartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Error'],
+                        datasets: [{
+                            label: 'Error Loading Data',
+                            data: [1],
+                            backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                            borderColor: 'rgba(255, 0, 0, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Error Loading Data'
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+    
+
+        $(document).ready(function() {
+            
+
+            $('#timeSlider').slider({
+                // jQuery UI Slider 配置选项
+            });
+});
+
+        $(document).ready(function() {
+    });
+
+
+
+
+
+        // 修改时间滑块初始化部分
+        $(document).ready(function () {
+            const START_DATE = new Date('2013-03-03');
+            const END_DATE = new Date('2013-08-09');
+
+            $("#timeSlider").slider({
+                range: true,
+                min: START_DATE.getTime(),
+                max: END_DATE.getTime(),
+                values: [START_DATE.getTime(), END_DATE.getTime()],
+                step: 86400000, // 一天的毫秒数
+                slide: function(event, ui) {
+                    if (ui.values[0] >= ui.values[1]) {
+                        return false;
+                    }
+                    
+                    const startDate = new Date(ui.values[0]);
+                    const endDate = new Date(ui.values[1]);
+                    
+                    // 更新时间范围显示
+                    $("#timeRange").text(
+                        `Selected Time Range: ${formatDate(startDate)} - ${formatDate(endDate)}`
+                    );
+                },
+                stop: function(event, ui) {
+                    // 滑块停止时更新图表
+                    const startDate = new Date(ui.values[0]);
+                    const endDate = new Date(ui.values[1]);
+                    
+                    // 调用 chart.js 中的更新函数
+                    updateChartWithTimeRange(startDate, endDate);
+                }
+            });
+
+            // 设置初始时间范围显示
+            $("#timeRange").text(
+                `Selected Time Range: ${formatDate(START_DATE)} - ${formatDate(END_DATE)}`
+            );
+        });
+
+        // 添加日期格式化辅助函数
+        function formatDate(date) {
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+        }
+
+        // 确保在页面加载完成后初始化数据
+        $(document).ready(function() {
+            // 加载数据并初始化图表
+            loadAndProcessData().then(() => {
+                // 初始化默认显示协议分布图
+                loadChart('protocol');
+            }).catch(error => {
+                console.error('Failed to load data:', error);
+            });
+        });
+
+        const jsonData = [
+            // 把cleaned_data.json的内容粘贴在这里
+        ];
+
+        // 修改loadAndProcessData函数调用
+        $(document).ready(function() {
+            // 直接使用内联数据
+            processData(jsonData);
+        });
+
+        // 添加处理数据的函数
+        function processData(data) {
+            processedData = {
+                protocol: {},
+                country: {},
+                sourcePort: {},
+                destinationPort: {}
+            };
+
+            // 处理每条数据
+            data.forEach(item => {
+                // 处理协议数据
+                if (item.proto) {
+                    processedData.protocol[item.proto] = (processedData.protocol[item.proto] || 0) + 1;
+                }
+                
+                // 处理国家数据
+                if (item.country) {
+                    processedData.country[item.country] = (processedData.country[item.country] || 0) + 1;
+                }
+                
+                // 处理源端口数据
+                if (item.spt) {
+                    processedData.sourcePort[item.spt] = (processedData.sourcePort[item.spt] || 0) + 1;
+                }
+                
+                // 处理目标端口数据
+                if (item.dpt) {
+                    processedData.destinationPort[item.dpt] = (processedData.destinationPort[item.dpt] || 0) + 1;
+                }
+            });
+
+            // 初始化默认图表
+            loadChart('protocol');
+        }
+    </script>
+</body>
+</html>
+ 

@@ -1,0 +1,273 @@
+﻿<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Cycure - Cyber Security HTML Template</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.png">
+
+		<!-- CSS here -->
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/animate.min.css">
+        <link rel="stylesheet" href="./css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="./css/style.css">
+
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dropdowns/">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+        <link href="./css/bootstrap.minmod.css" rel="stylesheet">
+
+        <link href="./css/addeddrop.css" rel="stylesheet">
+
+        <link href="./css/masonary.css" rel="stylesheet">
+
+
+        <style>
+            body, html {
+              margin: 0;
+              height: 100%;
+              background-color: #000000;
+            }
+            #globeViz {
+              width: 100%;
+              height: 100%;
+            }
+          </style>
+
+        <script src="./js/color-modes.js"></script>
+        
+          <script type="importmap">
+            {
+              "imports": {
+                "three": "https://esm.sh/three",
+                "three/addons/": "https://esm.sh/three/examples/jsm/"
+              }
+            }
+          </script>
+
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+    </head>
+    <body>
+
+        <!-- preloader -->
+        <div id="preloader">
+            <div id="loading-center">
+                <div id="loading-center-absolute">
+                    <div class="object" id="object_one"></div>
+                    <div class="object" id="object_two"></div>
+                    <div class="object" id="object_three"></div>
+                </div>
+            </div>
+        </div>
+        <!-- preloader-end -->
+
+		<!-- Scroll-top -->
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <i class="fas fa-angle-up"></i>
+        </button>
+        <!-- Scroll-top-end-->
+
+        <!-- header-area -->
+        <header>
+            <div id="sticky-header" class="menu-area transparent-header header-style-two">
+                <div class="container custom-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
+                            <div class="menu-wrap">
+                                <nav class="menu-nav">
+                                    <div class="logo">
+                                        <a href="index.html">
+                                            <img src="./img/logo/logo.png" alt="Logo">
+                                        </a>
+                                    </div>
+                                    <div class="navbar-wrap main-menu d-none d-lg-flex">
+                                        <ul class="navigation">
+                                            <li class="function-menu"><a href="index.html">Home</a></li>
+                                            <li class="function-menu"><a href="#">Pages</a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="test.html">Introduction</a></li>
+                                                    <li><a href="Background.html">Background</a></li>
+                                                    <li><a href="Mapping.html">Mapping</a></li>
+                                                    <li><a href="chart.html">Visualizing</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="offcanvas-btn">
+                                        <a href="#"><img src="./img/icons/dots.png" alt="Icon"></a>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Mobile Menu  -->
+                            <div class="mobile-menu">
+                                <nav class="menu-box">
+                                    <div class="nav-logo"><a href="index.html"><img src="./img/logo/logo.png" alt="" title=""></a>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- End Mobile Menu -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- offCanvas-start -->
+            <div class="offCanvas-wrap">
+                <div class="offCanvas-toggle"><img src="./img/icons/cross.svg" alt="icon"></div>
+                <div class="offCanvas-body">
+                    <div class="offCanvas-content">
+                        <h3 class="title">HoneyPots defence starts here for both commercial and personal</h3>
+                        <p>HoneyPots is a network security technique used to deceive and lure attackers in order to protect the actual system and data.。</p>
+                    </div>
+                    <div class="offcanvas-contact footer-contact-info">
+                        <h4 class="email">Donghao.zhang.24@ucl.ac.uk</h4>
+                        <h4 class="email">Yuezhu.24@ucl.ac.uk</h4>
+                        <h4 class="email">Sirui.Luo.24@ucl.ac.uk</h4>
+                        <p>Connect Environment, 1 Pool Street, UCL, <br> London, United Kingdom</p>
+                    </div>
+                </div>
+            </div>
+            <!-- offCanvas-end -->
+
+        </header>
+        <!-- header-area-end -->
+
+
+        <!-- main-area -->
+        <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center position-absolute" 
+                style="top: 50%; left: 17%; transform: translate(-50%, -50%); opacity: 0.7;">
+            <div class="dropdown-menu d-block position-static pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px" data-bs-theme="dark">
+                <form class="p-2 mb-2 bg-dark border-bottom border-dark">
+                    <input type="search" class="form-control bg-dark" autocomplete="false" placeholder="Select the time range" disabled>
+                </form>                  
+                <ul class="list-unstyled mb-0">
+                <li><button class="dropdown-item d-flex align-items-center gap-2 py-2" id="dateRangeBtn1">
+                    <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                    03/01/2013 -- 03/31/2013
+                </button></li>
+                <li><button class="dropdown-item d-flex align-items-center gap-2 py-2" id="dateRangeBtn2">
+                    <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                    04/01/2013 -- 04/30/2013
+                </button></li>
+                <li><button class="dropdown-item d-flex align-items-center gap-2 py-2" id="dateRangeBtn3">
+                    <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                    05/01/2013 -- 05/31/2013
+                </button></li>
+                <li><button class="dropdown-item d-flex align-items-center gap-2 py-2" id="dateRangeBtn4">
+                    <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                    06/01/2013 -- 06/30/2013
+                </button></li>
+                <li><button class="dropdown-item d-flex align-items-center gap-2 py-2" id="dateRangeBtn5">
+                    <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                    07/01/2013 -- 07/31/2013
+                </button></li>
+                <li><button class="dropdown-item d-flex align-items-center gap-2 py-2" id="dateRangeBtn6">
+                    <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                    08/01/2013 -- 08/31/2013
+                </button></li>
+                <li><button class="dropdown-item d-flex align-items-center gap-2 py-2" id="dateRangeBtn7">
+                    <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                    Total Duration
+                </button></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="d-flex gap-4 justify-content-center py-5 position-absolute" 
+            style="top: 93%; left: 50%; transform: translate(-50%, -50%); opacity: 0.7;">
+            <button class="btn btn-primary rounded-pill px-3" id="udpBtn" type="button">UDP</button>
+            <button class="btn btn-success rounded-pill px-3" id="tcpBtn" type="button">TCP</button>
+            <button class="btn btn-danger rounded-pill px-3" id="icmpBtn" type="button">ICMP</button>
+            <button class="btn btn-light rounded-pill px-3" id="allBtn" type="button">ALL</button>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 mb-4 position-absolute" 
+            style="top: 50%; left: 93%; transform: translate(-50%, -50%); opacity: 0.7;">
+            <div class="card" style="width: 18rem;"> <!-- 设置宽度 -->
+                <div class="card-body">
+                    <h4 class="card-title">Attack Statistics</h4>
+                    <br>
+                    <h5 class="card-title">1. Attack Types</h5>
+
+                    <p class="card-text">
+                        <span id="udpLabel" style="background-color: blue; color: white; padding: 0.2em; border-radius: 0.2em; display: inline-block; width: 50px; text-align: center;">UDP</span> :
+                        <span id="udpCount" style="margin-left: 10px;"></span>
+                    </p>
+                    <p class="card-text">
+                        <span id="tcpLabel" style="background-color: green; color: white; padding: 0.2em; border-radius: 0.2em; display: inline-block; width: 50px; text-align: center;">TCP</span> :
+                        <span id="tcpCount" style="margin-left: 10px;"></span>
+                    </p>
+                    <p class="card-text">
+                        <span id="icmpLabel" style="background-color: red; color: white; padding: 0.2em; border-radius: 0.2em; display: inline-block; width: 50px; text-align: center;">ICMP</span> :
+                        <span id="icmpCount" style="margin-left: 10px;"></span>
+                    </p>
+                    <p class="card-text">
+                        <span id="allLabel" style="background-color: black; color: white; padding: 0.2em; border-radius: 0.2em; display: inline-block; width: 50px; text-align: center;">ALL</span> :
+                        <span id="allCount" style="margin-left: 10px;"></span>
+                    </p>
+                    
+                    
+                    <br>
+                    <h5 class="card-title">2. Most Attacks from</h5>
+
+                    <p class="card-text">
+                        <span id="ctry1lab" style="background-color: grey; color: white; padding: 0.2em; border-radius: 0.2em; display: inline-block; min-width: 50px; text-align: center;">null</span>
+                        <span id="ctry1ct" style="margin-left: 10px;"></span>
+                    </p>   
+                    <p class="card-text">
+                        <span id="ctry2lab" style="background-color: grey; color: white; padding: 0.2em; border-radius: 0.2em; display: inline-block; min-width: 50px; text-align: center;">null</span> :
+                        <span id="ctry2ct" style="margin-left: 10px;"></span>
+                    </p>   
+                    <p class="card-text">
+                        <span id="ctry3lab" style="background-color: grey; color: white; padding: 0.2em; border-radius: 0.2em; display: inline-block; min-width: 50px; text-align: center;">null</span> :
+                        <span id="ctry3ct" style="margin-left: 10px;"></span>
+                    </p>   
+
+                    <br>
+                    <h5 class="card-title">3. Most Attacks to</h5>
+
+                    <p class="card-text">
+                        <span id="host1lab" style="background-color: purple; color: white; padding: 0.2em; border-radius: 0.2em; display: inline-block; min-width: 50px; text-align: center;">null</span> :
+                        <span id="host1ct" style="margin-left: 10px;"></span>
+                    </p>   
+                    <p class="card-text">
+                        <span id="host2lab" style="background-color: purple; color: white; padding: 0.2em; border-radius: 0.2em; display: inline-block; min-width: 50px; text-align: center;">null</span> :
+                        <span id="host2ct" style="margin-left: 10px;"></span>
+                    </p>   
+                    <p class="card-text">
+                        <span id="host3lab" style="background-color: purple; color: white; padding: 0.2em; border-radius: 0.2em; display: inline-block; min-width: 50px; text-align: center;">null</span> :
+                        <span id="host3ct" style="margin-left: 10px;"></span>
+                    </p>  
+
+                    <!--
+                    <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
+                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>-->
+
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div id="globeViz"></div>
+            <script type="module" src="./js/globe.js"></script>
+        </div>
+
+        <!-- main-area-end -->
+
+		<!-- JS here -->
+        <script src="./js/bootstrap.bundle.min.js"></script>
+        <script src="./js/vendor/jquery-3.6.0.min.js"></script>
+        <script src="./js/bootstrap.min.js"></script>
+        <script src="./js/main.js"></script>
+
+        <script async src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,0 +1,263 @@
+﻿<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Honeypot Overview</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+		<!-- CSS here -->
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/animate.min.css">
+        <link rel="stylesheet" href="./css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="./css/style.css">
+        
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+                color: #99A2AC;
+                background-color: #00172F;
+                margin: 0;
+                padding: 0;
+            }
+            .Background.container {
+                display: flex;
+            }
+            .Background.sidebar {
+                flex: 0 0 300px;
+                background: #011529;
+                padding: 20px;
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+                padding-top: 100px;
+            }
+            .Background.sidebar h2 {
+                color: #F9C747;
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+            .Background.sidebar a {
+                display: block;
+                color: #F9C747;
+                text-transform: uppercase;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+            .Background.sidebar a:hover {
+                color: #FEFFFE;
+            }
+            .Background.content {
+                flex: 1;
+                padding: 40px;
+                background-color: #00172F;
+                margin-left: 20px;
+                border-left: 1px solid #192E44;
+            }
+            .Background.content h1, .content h2 {
+                color: #FEFFFE;
+            }
+            .Background.content p {
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+            .Background.content img {
+                float: right;
+                max-width: 300px;
+                margin: 10px 0 10px 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- preloader -->
+        <div id="preloader">
+            <div id="loading-center">
+                <div id="loading-center-absolute">
+                    <div class="object" id="object_one"></div>
+                    <div class="object" id="object_two"></div>
+                    <div class="object" id="object_three"></div>
+                </div>
+            </div>
+        </div>
+        <!-- preloader-end -->
+
+		<!-- Scroll-top -->
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <i class="fas fa-angle-up"></i>
+        </button>
+        <!-- Scroll-top-end-->
+
+        <!-- header-area -->
+        <header>
+            <div id="sticky-header" class="menu-area transparent-header header-style-two">
+                <div class="container custom-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
+                            <div class="menu-wrap">
+                                <nav class="menu-nav">
+                                    <div class="logo">
+                                        <a href="index.html">
+                                            <img src="./img/logo/logo.png" alt="Logo">
+                                        </a>
+                                    </div>
+                                    <div class="navbar-wrap main-menu d-none d-lg-flex">
+                                        <ul class="navigation">
+                                            <li class="function-menu"><a href="index.html">Home</a></li>
+                                            <li class="function-menu"><a href="#">Pages</a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="test.html">Introduction</a></li>
+                                                    <li><a href="Background.html">Background</a></li>
+                                                    <li><a href="Mapping.html">Mapping</a></li>
+                                                    <li><a href="chart.html">Visualizing</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="offcanvas-btn">
+                                        <a href="#"><img src="./img/icons/dots.png" alt="Icon"></a>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Mobile Menu  -->
+                            <div class="mobile-menu">
+                                <nav class="menu-box">
+                                    <div class="nav-logo"><a href="index.html"><img src="./img/logo/logo.png" alt="" title=""></a>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- End Mobile Menu -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- offCanvas-start -->
+            <div class="offCanvas-wrap">
+                <div class="offCanvas-toggle"><img src="./img/icons/cross.svg" alt="icon"></div>
+                <div class="offCanvas-body">
+                    <div class="offCanvas-content">
+                        <h3 class="title">HoneyPots defence starts here for both commercial and personal</h3>
+                        <p>HoneyPots is a network security technique used to deceive and lure attackers in order to protect the actual system and data.。</p>
+                    </div>
+                    <div class="offcanvas-contact footer-contact-info">
+                        <h4 class="email">Donghao.zhang.24@ucl.ac.uk</h4>
+                        <h4 class="email">Yuezhu.24@ucl.ac.uk</h4>
+                        <h4 class="email">Sirui.Luo.24@ucl.ac.uk</h4>
+                        <p>Connect Environment, 1 Pool Street, UCL, <br> London, United Kingdom</p>
+                    </div>
+                </div>
+            </div>
+            <!-- offCanvas-end -->
+
+        </header>
+        <!-- header-area-end -->
+
+        <body>
+
+            <div class="Background container">
+                <div class="Background sidebar">
+                    <h2>Contents</h2>
+                    <a href="#introduction">Introduction</a>
+                    <a href="#types">Types of Honeypots</a>
+                    <a href="#benefits">Benefits</a>
+                    <a href="#risks">Risks</a>
+                </div>
+            
+                <div class="Background content">
+                    <section id="introduction">
+                        <h1>Introduction</h1>
+                        <p>
+                            Honeypots are an essential tool in cybersecurity, designed to attract attackers and gather intelligence on their techniques and methods. By simulating real systems, honeypots serve as decoys to lure malicious actors, enabling security teams to study and respond to threats effectively.
+                        </p>
+                        <p>
+                            This page provides an overview of what honeypots are, their types, and their benefits and risks.
+                        </p>
+                    </section>
+            
+                    <section id="types">
+                        <h1>Types of Honeypots</h1>
+                        <h2>Pure Honeypots</h2>
+                        <p>
+                            These honeypots are isolated and used exclusively for research, focusing on capturing detailed information about attacker behaviors.
+                        </p>
+                        <h2>Low-Interaction Honeypots</h2>
+                        <p>
+                            These simulate basic systems to detect automated attacks like scanning or probing. They are easy to deploy but offer limited insight into advanced threats.
+                        </p>
+                        <h2>High-Interaction Honeypots</h2>
+                        <p>
+                            These provide a realistic environment for attackers, enabling detailed analysis of sophisticated threats. However, they require significant resources and careful isolation.
+                        </p>
+                    </section>
+            
+                    <section id="benefits">
+                        <h1>Benefits of Honeypots</h1>
+                        <ul>
+                            <li><strong>Threat Intelligence:</strong> Honeypots provide insights into attacker methods and strategies.</li>
+                            <li><strong>Early Detection:</strong> They can identify threats before they affect production systems.</li>
+                            <li><strong>Cost-Effective:</strong> Honeypots are a low-cost method to test cybersecurity defenses.</li>
+                        </ul>
+                    </section>
+            
+                    <section id="risks">
+                        <h1>Risks of Honeypots</h1>
+                        <ul>
+                            <li><strong>Exploitation:</strong> If not isolated, attackers can use honeypots to further compromise networks.</li>
+                            <li><strong>Detection:</strong> Advanced attackers might identify honeypots, reducing their effectiveness.</li>
+                            <li><strong>Resource Intensity:</strong> High-interaction honeypots require significant effort to maintain.</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+
+
+        <!-- footer-start -->
+        <footer class="footer-area footer-bg" data-background="assets/img/bg/footer_bg.jpg">
+            <div class="container">
+                <div class="footer-top-wrap">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="footer-widget">
+                                <div class="footer-contact-info">
+                                    <h4 class="email">Donghao.zhang.24@ucl.ac.uk</h4>
+                                    <h5 class="email">Yuezhu.24@ucl.ac.uk</h5>
+                                    <h6 class="email">Sirui.Luo.24@ucl.ac.uk</h6>
+                                    <p>Connect Environment, 1 Pool Street, UCL, <br> London, United Kingdom</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-2 col-lg-3 col-md-6 col-sm-4 column-3">
+                            <div class="footer-widget">
+                                <h4 class="fw-title">Our Services</h4>
+                                <ul class="footer-link no-wrap">
+                                    <li><a href="test.html">"The Origins of Cyber Attacks: Understanding the Role of Honeypots"</a></li>
+                                    <li><a href="Background.html">"Unveiling the Global Threat: Insights into Honeypot Attacks"</a></li>
+                                    <li><a href="Mapping.html">"Mapping Web of Cyber Threats: Explore Attack Patterns and Relationships"</a></li>
+                                    <li><a href="chart.html">"Visualizing Cyber Attacks: Data Insights and Rankings at a Glance"</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer-start-end -->
+
+
+
+    <!-- JS here -->
+    <script src="./js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/main.js"></script>
+    </body>
+</html>

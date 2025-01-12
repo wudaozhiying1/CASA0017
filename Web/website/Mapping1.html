@@ -1,0 +1,183 @@
+﻿<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Cycure - Cyber Security HTML Template</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.png">
+
+		<!-- CSS here -->
+        <link rel="stylesheet" href="./css/animate.min.css">
+        <link rel="stylesheet" href="./css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="./css/style.css">
+
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dropdowns/">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+        <link href="./css/bootstrap.minmod.css" rel="stylesheet">
+
+        <link href="./css/addeddrop.css" rel="stylesheet">
+
+    
+    <!-- Custom styles for this template -->
+    <link href="./css/dropdowns.css" rel="stylesheet">
+
+        <style>
+            body, html {
+              margin: 0;
+              height: 100%;
+              background-color: #000000;
+            }
+            #globeViz {
+              width: 100%;
+              height: 100%;
+            }
+        </style>
+        
+        <script type="importmap">
+            {
+              "imports": {
+                "three": "https://esm.sh/three",
+                "three/addons/": "https://esm.sh/three/examples/jsm/"
+              }
+            }
+        </script>
+
+    </head>
+    <body>
+
+        <!-- preloader -->
+        <div id="preloader">
+            <div id="loading-center">
+                <div id="loading-center-absolute">
+                    <div class="object" id="object_one"></div>
+                    <div class="object" id="object_two"></div>
+                    <div class="object" id="object_three"></div>
+                </div>
+            </div>
+        </div>
+        <!-- preloader-end -->
+
+		<!-- Scroll-top -->
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <i class="fas fa-angle-up"></i>
+        </button>
+        <!-- Scroll-top-end-->
+
+        <!-- header-area -->
+        <header>
+            <div id="sticky-header" class="menu-area transparent-header header-style-two">
+                <div class="container custom-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
+                            <div class="menu-wrap">
+                                <nav class="menu-nav">
+                                    <div class="logo">
+                                        <a href="index.html">
+                                            <img src="./img/logo/logo.png" alt="Logo">
+                                        </a>
+                                    </div>
+                                    <div class="navbar-wrap main-menu d-none d-lg-flex">
+                                        <ul class="navigation">
+                                            <li class="function-menu"><a href="index.html">Home</a></li>
+                                            <li class="function-menu"><a href="#">Pages</a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="test.html">Introduction</a></li>
+                                                    <li><a href="Background.html">Background</a></li>
+                                                    <li><a href="Mapping.html">Mapping</a></li>
+                                                    <li><a href="chart.html">Visualizing</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="offcanvas-btn">
+                                        <a href="#"><img src="./img/icons/dots.png" alt="Icon"></a>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Mobile Menu  -->
+                            <div class="mobile-menu">
+                                <nav class="menu-box">
+                                    <div class="nav-logo"><a href="index.html"><img src="./img/logo/logo.png" alt="" title=""></a>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- End Mobile Menu -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- offCanvas-start -->
+            <div class="offCanvas-wrap">
+                <div class="offCanvas-toggle"><img src="./img/icons/cross.svg" alt="icon"></div>
+                <div class="offCanvas-body">
+                    <div class="offCanvas-content">
+                        <h3 class="title">HoneyPots defence starts here for both commercial and personal</h3>
+                        <p>HoneyPots is a network security technique used to deceive and lure attackers in order to protect the actual system and data.。</p>
+                    </div>
+                    <div class="offcanvas-contact footer-contact-info">
+                        <h4 class="email">Donghao.zhang.24@ucl.ac.uk</h4>
+                        <h4 class="email">Yuezhu.24@ucl.ac.uk</h4>
+                        <h4 class="email">Sirui.Luo.24@ucl.ac.uk</h4>
+                        <p>Connect Environment, 1 Pool Street, UCL, <br> London, United Kingdom</p>
+                    </div>
+                </div>
+            </div>
+            <!-- offCanvas-end -->
+
+        </header>
+        <!-- header-area-end -->
+
+
+        <!-- main-area -->
+        <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center position-absolute" 
+                style="top: 50%; left: 20%; transform: translate(-50%, -50%);">
+            <div class="dropdown-menu d-block position-static pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px" data-bs-theme="dark">
+                <form class="p-2 mb-2 bg-dark border-bottom border-dark">
+                    <input type="search" class="form-control bg-dark" autocomplete="false" placeholder="Select the time range" disabled>
+                </form>                  
+                <ul class="list-unstyled mb-0">
+                <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+                    <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                    03/01/2013 -- 03/31/2013
+                </a></li>
+                <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+                    <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                    04/01/2013 -- 04/30/2013
+                </a></li>
+                <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+                    <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                    05/01/2013 -- 05/31/2013
+                </a></li>
+                <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+                    <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                    06/01/2013 -- 06/30/2013
+                </a></li>
+                <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+                    <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                    07/01/2013 -- 07/31/2013
+                </a></li>
+                <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+                    <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                    08/01/2013 -- 08/31/2013
+                </a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- main-area-end -->
+
+		<!-- JS here -->
+        <script src="./js/bootstrap.bundle.min.js"></script>
+        <script src="./js/vendor/jquery-3.6.0.min.js"></script>
+        <script src="./js/bootstrap.min.js"></script>
+        <script src="./js/main.js"></script>
+    </body>
+</html>

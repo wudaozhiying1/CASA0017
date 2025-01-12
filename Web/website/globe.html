@@ -1,0 +1,170 @@
+<head>
+  <style>
+    body, html {
+      margin: 0;
+      height: 100%;
+      background-color: #000000; /* 设置深蓝色背景 */
+    }
+    #globeViz {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://esm.sh/three",
+        "three/addons/": "https://esm.sh/three/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div id="globeViz"></div>
+
+  <script type="module">
+    import ThreeGlobe from 'https://esm.sh/three-globe?external=three';
+    import * as THREE from 'https://esm.sh/three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js?external=three';
+
+    // 生成随机数据
+    const N = 50;
+
+    const arcsData = [...Array(N).keys()].map(() => ({
+      startLat: (Math.random() - 0.5) * 180,
+      startLng: (Math.random() - 0.5) * 360,
+      endLat: (Math.random() - 0.5) * 180,
+      endLng: (Math.random() - 0.5) * 360,
+      color: ['red', 'white', 'blue', 'purple'][Math.round(Math.random() * 3)]
+    }));
+
+    fetch('./ne_110m_admin_0_countries.geojson').then(res => res.json()).then(countries => {
+      const Globe = new ThreeGlobe()
+        .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
+        .hexPolygonsData(countries.features)
+        .hexPolygonResolution(3)
+        .hexPolygonMargin(0.4)
+        .hexPolygonUseDots(true)
+        .hexPolygonColor(() => {
+          const grays = ['#ffffff', '#e0e0e0', '#cccccc', '#b3b3b3', '#999999'];
+          return grays[Math.floor(Math.random() * grays.length)];
+        })
+        .showAtmosphere(true)
+        .atmosphereColor('white')
+        .atmosphereAltitude(0.2)
+        .arcsData(arcsData)
+        .arcColor('color')
+        .arcDashLength(0.7)
+        .arcDashGap(4)
+        .arcStroke(1)
+        .arcDashInitialGap(() => Math.random() * 5)
+        .arcDashAnimateTime(600);
+
+      // 设置渲染器
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor('#000000', 1);
+      document.getElementById('globeViz').appendChild(renderer.domElement);
+
+      // 设置场景
+      const scene = new THREE.Scene();
+
+      // 添加星空背景
+      const starsGeometry = new THREE.BufferGeometry();
+      const starCount = 20000; // 星星数量
+      const minDistance = 1500; // 最小距离
+      const maxDistance = 3000; // 最大距离
+      const positions = new Float32Array(starCount * 3);
+
+      for (let i = 0; i < starCount; i++) {
+        let x, y, z, distance;
+        do {
+          x = (Math.random() - 0.5) * 2 * maxDistance;
+          y = (Math.random() - 0.5) * 2 * maxDistance;
+          z = (Math.random() - 0.5) * 2 * maxDistance;
+          distance = Math.sqrt(x * x + y * y + z * z);
+        } while (distance < minDistance);
+
+        positions[i * 3] = x;
+        positions[i * 3 + 1] = y;
+        positions[i * 3 + 2] = z;
+      }
+
+      starsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.7 });
+      const starField = new THREE.Points(starsGeometry, starsMaterial);
+      scene.add(starField);
+
+      scene.add(Globe);
+      scene.add(new THREE.AmbientLight(0xcccccc, Math.PI));
+      scene.add(new THREE.DirectionalLight(0xffffff, 0.6 * Math.PI));
+
+      // 设置相机
+      const camera = new THREE.PerspectiveCamera();
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      camera.position.z = 400;
+
+      // 添加OrbitControls
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.minDistance = 200;
+      controls.maxDistance = 600;
+      controls.rotateSpeed = 1;
+      controls.zoomSpeed = 0.8;
+
+      controls.minPolarAngle = Math.PI / 3.5;
+      controls.maxPolarAngle = Math.PI - Math.PI / 3;
+
+      // 禁用鼠标右键平移
+      controls.enablePan = false;
+
+      // 用户无交互时恢复旋转的检测
+      let lastMoveTime = Date.now();
+      let isMouseActive = false;
+      let isGlobeRotating = true;
+      let rotationSpeed = 0.001;
+
+      window.addEventListener('resize', () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+      });
+
+      window.addEventListener('mousemove', () => {
+        lastMoveTime = Date.now();
+        if (!isMouseActive) {
+          isMouseActive = true;
+          isGlobeRotating = false;
+        }
+      });
+
+      window.addEventListener('mousedown', () => {
+        isMouseActive = true;
+        isGlobeRotating = false;
+      });
+
+      function checkInactivity() {
+        if (isMouseActive && Date.now() - lastMoveTime > 500) {
+          isMouseActive = false;
+          isGlobeRotating = true;
+        }
+      }
+
+      (function animate() {
+      checkInactivity();
+      if (isGlobeRotating) {
+        const rotationSpeed = 0.0003;
+        Globe.rotation.y -= rotationSpeed;
+        starField.rotation.y -= rotationSpeed; // 同步旋转星空背景
+      }
+
+      controls.update();
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    })();
+
+    });
+  </script>
+</body>
