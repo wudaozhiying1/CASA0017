@@ -5,15 +5,15 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js?external=t
 const ARCS_DATA = [];
 let allData = [];
 
-let lastDateRangeBtnClicked = null; // 用来存储上次点击的日期按钮
+let lastDateRangeBtnClicked = null; // Store the last clicked date button
 
 
 function parseCustomDate(dateString) {
-    const [datePart, timePart] = dateString.split(' '); // 分离日期和时间
-    const [month, day, year] = datePart.split('/').map(Number); // 分离月、日、年
-    const [hour, minute] = timePart.split(':').map(Number); // 分离时、分
-    const fullYear = year < 100 ? 2000 + year : year; // 将两位年份转换为四位年份
-    return new Date(fullYear, month - 1, day, hour, minute); // 返回 Date 对象
+    const [datePart, timePart] = dateString.split(' '); // Split date and time
+    const [month, day, year] = datePart.split('/').map(Number); // Split month, day, year
+    const [hour, minute] = timePart.split(':').map(Number); // Split hour, minute
+    const fullYear = year < 100 ? 2000 + year : year; // Convert 2-digit year to 4-digit year
+    return new Date(fullYear, month - 1, day, hour, minute); // Return Date object
 }
 
 
@@ -38,10 +38,10 @@ fetch('./outputreal.json')
             endLat: item.hostlat,
             endLng: item.hostlong,
             color: item.color,
-            datetime: item.datetime // 保留原始的 datetime 字段
+            datetime: item.datetime // Keep original datetime field
         });
     });
-    console.log('all data:', allData);  // 输出所有数据
+    console.log('all data:', allData);  // Output all data
 
     console.log(ARCS_DATA);  // Output the processed data
 
@@ -148,7 +148,7 @@ fetch('./outputreal.json')
             isGlobeRotating = false;
         });
 
-        // 按钮点击事件
+        // Button click events 
         document.getElementById('udpBtn').addEventListener('click', () => {
             
             const filteredArcsData = ARCS_DATA.filter(arc => arc.color === 'blue');
@@ -180,10 +180,10 @@ fetch('./outputreal.json')
         });
 
         const countColorsInRange = (startDate, endDate) => {
-            const counts = { blue: 0, green: 0, red: 0 };  // 存储不同颜色的计数
+            const counts = { blue: 0, green: 0, red: 0 };  // Store counts for different colors
         
             allData.forEach(item => {
-                const arcDate = parseCustomDate(item.datetime); // 转换为 Date 对象
+                const arcDate = parseCustomDate(item.datetime); // Convert to Date object
                 if (arcDate >= startDate && arcDate <= endDate) {
                     if (item.color === 'blue') counts.blue++;
                     else if (item.color === 'green') counts.green++;
@@ -217,14 +217,14 @@ fetch('./outputreal.json')
             `;
         };
 
-        // 计算指定时间范围内的国家计数
+        // Calculate country counts within specified time range 
         const countCountriesInRange = (startDate, endDate) => {
-            const countryCounts = {};  // 存储每个国家的计数
+            const countryCounts = {};  // Store counts for each country
 
             allData.forEach(item => {
-                const arcDate = parseCustomDate(item.datetime); // 转换为 Date 对象
+                const arcDate = parseCustomDate(item.datetime); // Convert to Date object
                 if (arcDate >= startDate && arcDate <= endDate) {
-                    const country = item.country; // 获取国家名称
+                    const country = item.country; // Get country name
                     if (country) {
                         if (!countryCounts[country]) {
                             countryCounts[country] = 1;
@@ -235,48 +235,50 @@ fetch('./outputreal.json')
                 }
             });
 
-            // 将国家和计数转换为数组并按计数排序
+            // Convert countries and counts to array and sort by count
             const sortedCountries = Object.entries(countryCounts)
-                .sort((a, b) => b[1] - a[1]) // 按计数从高到低排序
-                .slice(0, 3);  // 获取前三名
+                .sort((a, b) => b[1] - a[1]) // Sort by count in descending order
+                .slice(0, 3);  // Get top 3
 
             return sortedCountries;
         };
 
-        // 更新显示最频繁出现的前三个国家
+        // Update display of top three most frequent countries
         const updateTopCountriesDisplay = (startDate, endDate) => {
-            const topCountries = countCountriesInRange(startDate, endDate); // 获取排名前3的国家
-        
-            // 更新第一个国家及其计数
+            const topCountries = countCountriesInRange(startDate, endDate); // Get top 3 countries
+            
+            // Update first country and count
             const outputContainer1 = document.getElementById('ctry1lab');
-            outputContainer1.innerHTML = topCountries[0] ? topCountries[0][0] : 'No data'; // 显示第一个国家
+            outputContainer1.innerHTML = topCountries[0] ? topCountries[0][0] : 'No data';
         
             const outputContainer4 = document.getElementById('ctry1ct');
-            outputContainer4.innerHTML = topCountries[0] ? topCountries[0][1] : 0; // 显示第一个国家的计数
+            outputContainer4.innerHTML = topCountries[0] ? topCountries[0][1] : 0; // Display first country count
         
-            // 更新第二个国家及其计数
+            // Update second country and count
             const outputContainer2 = document.getElementById('ctry2lab');
-            outputContainer2.innerHTML = topCountries[1] ? topCountries[1][0] : 'No data'; // 显示第二个国家
+            outputContainer2.innerHTML = topCountries[1] ? topCountries[1][0] : 'No data';
         
             const outputContainer5 = document.getElementById('ctry2ct');
-            outputContainer5.innerHTML = topCountries[1] ? topCountries[1][1] : 0; // 显示第二个国家的计数
+            outputContainer5.innerHTML = topCountries[1] ? topCountries[1][1] : 0; // Display second country count
         
-            // 更新第三个国家及其计数
+            // Update third country and count
             const outputContainer3 = document.getElementById('ctry3lab');
-            outputContainer3.innerHTML = topCountries[2] ? topCountries[2][0] : 'No data'; // 显示第三个国家
+            outputContainer3.innerHTML = topCountries[2] ? topCountries[2][0] : 'No data'; // Display third country 
+        
         
             const outputContainer6 = document.getElementById('ctry3ct');
-            outputContainer6.innerHTML = topCountries[2] ? topCountries[2][1] : 0; // 显示第三个国家的计数
+            outputContainer6.innerHTML = topCountries[2] ? topCountries[2][1] : 0; // Display third country count
+        
         };
 
-        // 计算指定时间范围内的国家计数
+        // Calculate host counts within specified time range 
         const countHostsInRange = (startDate, endDate) => {
-            const hostCounts = {};  // 存储每个国家的计数
+            const hostCounts = {};  // Store counts for each host
 
             allData.forEach(item => {
-                const arcDate = parseCustomDate(item.datetime); // 转换为 Date 对象
+                const arcDate = parseCustomDate(item.datetime); // Convert to Date object
                 if (arcDate >= startDate && arcDate <= endDate) {
-                    const host = item.host; // 获取国家名称
+                    const host = item.host; // Get host name
                     if (host) {
                         if (!hostCounts[host]) {
                             hostCounts[host] = 1;
@@ -287,44 +289,44 @@ fetch('./outputreal.json')
                 }
             });
 
-            // 将国家和计数转换为数组并按计数排序
+            // Convert hosts and counts to array and sort by count
             const sortedHosts = Object.entries(hostCounts)
-                .sort((a, b) => b[1] - a[1]) // 按计数从高到低排序
-                .slice(0, 3);  // 获取前三名
+                .sort((a, b) => b[1] - a[1]) // Sort by count in descending order
+                .slice(0, 3);  // Get top 3
 
             return sortedHosts;
         };
 
-        // 更新显示最频繁出现的前三个国家
+        // Update display of top three most frequent hosts
         const updateTopHostsDisplay = (startDate, endDate) => {
-            const topCountries = countHostsInRange(startDate, endDate); // 获取排名前3的国家
-        
-            // 更新第一个国家及其计数
+            const topCountries = countHostsInRange(startDate, endDate); // Get top 3 hosts
+            
+            // Update first host and count
             const outputContainer1 = document.getElementById('host1lab');
-            outputContainer1.innerHTML = topCountries[0] ? topCountries[0][0] : 'No data'; // 显示第一个国家
+            outputContainer1.innerHTML = topCountries[0] ? topCountries[0][0] : 'No data';
         
             const outputContainer4 = document.getElementById('host1ct');
-            outputContainer4.innerHTML = topCountries[0] ? topCountries[0][1] : 0; // 显示第一个国家的计数
+            outputContainer4.innerHTML = topCountries[0] ? topCountries[0][1] : 0; // Display first host count
         
-            // 更新第二个国家及其计数
+            // Update second host and count
             const outputContainer2 = document.getElementById('host2lab');
-            outputContainer2.innerHTML = topCountries[1] ? topCountries[1][0] : 'No data'; // 显示第二个国家
+            outputContainer2.innerHTML = topCountries[1] ? topCountries[1][0] : 'No data';
         
             const outputContainer5 = document.getElementById('host2ct');
-            outputContainer5.innerHTML = topCountries[1] ? topCountries[1][1] : 0; // 显示第二个国家的计数
+            outputContainer5.innerHTML = topCountries[1] ? topCountries[1][1] : 0; // Display second host count
         
-            // 更新第三个国家及其计数
+            // Update third host and count
             const outputContainer3 = document.getElementById('host3lab');
-            outputContainer3.innerHTML = topCountries[2] ? topCountries[2][0] : 'No data'; // 显示第三个国家
+            outputContainer3.innerHTML = topCountries[2] ? topCountries[2][0] : 'No data';
         
             const outputContainer6 = document.getElementById('host3ct');
-            outputContainer6.innerHTML = topCountries[2] ? topCountries[2][1] : 0; // 显示第三个国家的计数
+            outputContainer6.innerHTML = topCountries[2] ? topCountries[2][1] : 0; // Display third host count
         };
         
         
 
         const handleDateRangeBtnClick = (buttonId, startDate, endDate) => {
-            // 检查是否点击了同一个按钮
+            // Check if the same button was clicked
             if (lastDateRangeBtnClicked === buttonId) return;
 
             lastDateRangeBtnClicked = buttonId;
@@ -339,7 +341,7 @@ fetch('./outputreal.json')
         };
         
 
-        // 日期范围按钮点击事件处理
+    
         document.getElementById('dateRangeBtn1').addEventListener('click', () => {
             const startDate = new Date('2013-03-01T00:00:00');
             const endDate = new Date('2013-03-31T23:59:59');
@@ -398,7 +400,7 @@ fetch('./outputreal.json')
             const startDate = new Date('2013-01-01T00:00:00');
             const endDate = new Date('2013-12-31T23:59:59');
 
-            // 显示所有飞线
+            // Show all flight lines
             if (lastDateRangeBtnClicked === 'dateRangeBtn7') return;
             lastDateRangeBtnClicked = 'dateRangeBtn7';
             Globe.arcsData(ARCS_DATA);

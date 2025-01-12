@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="./css/animate.min.css">
     <link rel="stylesheet" href="./css/fontawesome-all.min.css">
     <link rel="stylesheet" href="./css/style.css">
-    <!-- 引入 jQuery -->
+    <!-- Import jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- 引入 jQuery UI -->
+    <!-- Import jQuery UI -->
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-    <!-- 引入 jQuery UI 样式 -->
+    <!-- Import jQuery UI styles -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
 
@@ -27,26 +27,26 @@
 
 
     <style>
-        /* 确保 body 和 html 没有默认的边距和填充 */
+        /* Ensure body and html have no default margins and padding */
         body, html {
             margin: 0;
             padding: 0;
         }
 
-        /* 固定页眉样式 */
+        /* Fixed header style */
 
-        /* 主体内容，添加上边距以避免与固定页眉重叠 */
+        /* Main content, add top margin to avoid overlap with fixed header */
         .content {
-            margin-top: 80px; /* 根据页眉的实际高度进行调整 */
+            margin-top: 80px; /* Adjust based on actual header height */
             padding: 20px;
         }
 
-        /* 滚动到锚点时，避免内容被固定页眉遮挡 */
+        /* Scroll to anchor, avoid content being hidden by fixed header */
         html {
-            scroll-padding-top: 80px; /* 与页眉高度相同 */
+            scroll-padding-top: 80px; /* Same as header height */
         }
 
-        /* 其他样式 */
+        /* Other styles */
         #chartContainer {
             width: 80%;
             margin: auto;
@@ -82,7 +82,7 @@
             font-size: 1.2em;
             color: #666;
         }
-        /* 响应式设计 */
+        /* Responsive design */
         @media (max-width: 768px) {
             .controls button {
                 width: 100%;
@@ -214,7 +214,7 @@
                 </header>
                 <!-- header-area-end -->
 
-    <!-- 主体内容 -->
+    <!-- main -->
     <div class="content">
         <div class="container text-center">
             <h1>Honeypot Data Visualization</h1>
@@ -233,7 +233,7 @@
     </div>
 
     <!-- JS -->
-     <!-- 引入 Chart.js -->
+     <!-- Import Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/main.js"></script>
@@ -241,34 +241,33 @@
 
 
     <script>
-        // 在其他脚本之前添加
-        console.log('正在检查脚本加载...');
+        // Add before other scripts
+        console.log('Checking script loading...');
         
         $(document).ready(function() {
-            console.log('jQuery 已加载');
+            console.log('jQuery loaded');
             
-            // 检查 loadAndProcessData 函数是否存在
+            // Check if loadAndProcessData function exists
             if (typeof loadAndProcessData === 'function') {
-                console.log('chart.js 已正确加载');
+                console.log('chart.js loaded correctly');
             } else {
-                console.error('chart.js 未正确加载');
+                console.error('chart.js not loaded correctly');
             }
             
-            // 尝试加载数据
+            // Try to load data
             try {
                 loadAndProcessData();
             } catch (e) {
-                console.error('加载数据时出错:', e);
+                console.error('Error loading data:', e);
             }
         });
 
-        // 示例的 JavaScript 代码
         function loadChart(type) {
-            console.log(`加载${type}类型的图表，数据:`, processedData);
+            console.log(`Loading ${type} chart, data:`, processedData);
             
-            // 添加数据验证
+            // Add data validation
             if (!processedData || !processedData[type]) {
-                console.error('无效的数据或类型:', type);
+                console.error('Invalid data or type:', type);
                 processedData = {
                     protocol: { 'NO_DATA': 1 },
                     country: { 'NO_DATA': 1 },
@@ -282,26 +281,26 @@
                 window.chartInstance.destroy();
             }
 
-            // 确保数据存在且是对象
+            // Ensure data exists and is an object
             const data = processedData[type] || { 'NO_DATA': 1 };
             
-            // 添加数据验证
+            // Add data validation
             try {
-                // 获取对应类型的前10个数据
+                // Get top 10 data for the specified type
                 const sortedData = Object.entries(data)
                     .sort(([, a], [, b]) => b - a)
                     .slice(0, 10);
 
-                // 准备图表数据
+                // Prepare chart data
                 const labels = sortedData.map(([key]) => key);
                 const values = sortedData.map(([, value]) => value);
 
-                // 设置随机颜色
+                // Set random colors
                 const backgroundColors = labels.map(() => 
                     `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.5)`
                 );
 
-                // 创建新图表
+                // Create new chart
                 window.chartInstance = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -343,11 +342,11 @@
                     }
                 });
                 
-                console.log('图表创建完成');
+                console.log('Chart created');
                 
             } catch (error) {
-                console.error('创建图表时出错:', error);
-                // 显示错误图表
+                console.error('Error creating chart:', error);
+                // Display error chart
                 window.chartInstance = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -379,7 +378,7 @@
             
 
             $('#timeSlider').slider({
-                // jQuery UI Slider 配置选项
+                // jQuery UI Slider configuration options
             });
 });
 
@@ -390,7 +389,7 @@
 
 
 
-        // 修改时间滑块初始化部分
+        // Modify time slider initialization
         $(document).ready(function () {
             const START_DATE = new Date('2013-03-03');
             const END_DATE = new Date('2013-08-09');
@@ -400,7 +399,7 @@
                 min: START_DATE.getTime(),
                 max: END_DATE.getTime(),
                 values: [START_DATE.getTime(), END_DATE.getTime()],
-                step: 86400000, // 一天的毫秒数
+                step: 86400000, // Milliseconds in a day
                 slide: function(event, ui) {
                     if (ui.values[0] >= ui.values[1]) {
                         return false;
@@ -409,28 +408,28 @@
                     const startDate = new Date(ui.values[0]);
                     const endDate = new Date(ui.values[1]);
                     
-                    // 更新时间范围显示
+                    // Update time range display
                     $("#timeRange").text(
                         `Selected Time Range: ${formatDate(startDate)} - ${formatDate(endDate)}`
                     );
                 },
                 stop: function(event, ui) {
-                    // 滑块停止时更新图表
+                    // Update chart when slider stops
                     const startDate = new Date(ui.values[0]);
                     const endDate = new Date(ui.values[1]);
                     
-                    // 调用 chart.js 中的更新函数
+                    // Call updateChartWithTimeRange function from chart.js
                     updateChartWithTimeRange(startDate, endDate);
                 }
             });
 
-            // 设置初始时间范围显示
+            // Set initial time range display
             $("#timeRange").text(
                 `Selected Time Range: ${formatDate(START_DATE)} - ${formatDate(END_DATE)}`
             );
         });
 
-        // 添加日期格式化辅助函数
+        // Add date formatting helper function
         function formatDate(date) {
             return date.toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -439,11 +438,11 @@
             });
         }
 
-        // 确保在页面加载完成后初始化数据
+        // Ensure data is initialized after page load
         $(document).ready(function() {
-            // 加载数据并初始化图表
+            // Load data and initialize chart
             loadAndProcessData().then(() => {
-                // 初始化默认显示协议分布图
+                // Initialize default display to protocol distribution chart
                 loadChart('protocol');
             }).catch(error => {
                 console.error('Failed to load data:', error);
@@ -451,16 +450,16 @@
         });
 
         const jsonData = [
-            // 把cleaned_data.json的内容粘贴在这里
+            // Paste cleaned_data.json content here
         ];
 
-        // 修改loadAndProcessData函数调用
+        // Modify loadAndProcessData function call
         $(document).ready(function() {
-            // 直接使用内联数据
+            // Use inline data directly
             processData(jsonData);
         });
 
-        // 添加处理数据的函数
+        // Add data processing function
         function processData(data) {
             processedData = {
                 protocol: {},
@@ -469,30 +468,30 @@
                 destinationPort: {}
             };
 
-            // 处理每条数据
+            // Process each data item
             data.forEach(item => {
-                // 处理协议数据
+                // Process protocol data
                 if (item.proto) {
                     processedData.protocol[item.proto] = (processedData.protocol[item.proto] || 0) + 1;
                 }
                 
-                // 处理国家数据
+                // Process country data
                 if (item.country) {
                     processedData.country[item.country] = (processedData.country[item.country] || 0) + 1;
                 }
                 
-                // 处理源端口数据
+                // Process source port data
                 if (item.spt) {
                     processedData.sourcePort[item.spt] = (processedData.sourcePort[item.spt] || 0) + 1;
                 }
                 
-                // 处理目标端口数据
+                // Process destination port data
                 if (item.dpt) {
                     processedData.destinationPort[item.dpt] = (processedData.destinationPort[item.dpt] || 0) + 1;
                 }
             });
 
-            // 初始化默认图表
+            // Initialize default chart
             loadChart('protocol');
         }
     </script>

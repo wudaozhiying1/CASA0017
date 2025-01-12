@@ -3,7 +3,7 @@
     body, html {
       margin: 0;
       height: 100%;
-      background-color: #000000; /* 设置深蓝色背景 */
+      background-color: #000000; /* Set dark background */
     }
     #globeViz {
       width: 100%;
@@ -29,7 +29,7 @@
     import * as THREE from 'https://esm.sh/three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js?external=three';
 
-    // 生成随机数据
+    // Generate random data
     const N = 50;
 
     const arcsData = [...Array(N).keys()].map(() => ({
@@ -62,20 +62,20 @@
         .arcDashInitialGap(() => Math.random() * 5)
         .arcDashAnimateTime(600);
 
-      // 设置渲染器
+      // Setup renderer
       const renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setClearColor('#000000', 1);
       document.getElementById('globeViz').appendChild(renderer.domElement);
 
-      // 设置场景
+      // Setup scene
       const scene = new THREE.Scene();
 
-      // 添加星空背景
+      // Add starry background
       const starsGeometry = new THREE.BufferGeometry();
-      const starCount = 20000; // 星星数量
-      const minDistance = 1500; // 最小距离
-      const maxDistance = 3000; // 最大距离
+      const starCount = 20000; // Number of stars
+      const minDistance = 1500; // Minimum distance
+      const maxDistance = 3000; // Maximum distance
       const positions = new Float32Array(starCount * 3);
 
       for (let i = 0; i < starCount; i++) {
@@ -101,13 +101,13 @@
       scene.add(new THREE.AmbientLight(0xcccccc, Math.PI));
       scene.add(new THREE.DirectionalLight(0xffffff, 0.6 * Math.PI));
 
-      // 设置相机
+      // Setup camera
       const camera = new THREE.PerspectiveCamera();
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       camera.position.z = 400;
 
-      // 添加OrbitControls
+      // Add OrbitControls
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.minDistance = 200;
       controls.maxDistance = 600;
@@ -117,10 +117,10 @@
       controls.minPolarAngle = Math.PI / 3.5;
       controls.maxPolarAngle = Math.PI - Math.PI / 3;
 
-      // 禁用鼠标右键平移
+      // Disable right-click panning
       controls.enablePan = false;
 
-      // 用户无交互时恢复旋转的检测
+      // Detect user inactivity to resume rotation
       let lastMoveTime = Date.now();
       let isMouseActive = false;
       let isGlobeRotating = true;
@@ -157,7 +157,7 @@
       if (isGlobeRotating) {
         const rotationSpeed = 0.0003;
         Globe.rotation.y -= rotationSpeed;
-        starField.rotation.y -= rotationSpeed; // 同步旋转星空背景
+        starField.rotation.y -= rotationSpeed; // Synchronize starfield rotation with globe
       }
 
       controls.update();
