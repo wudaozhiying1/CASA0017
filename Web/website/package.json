@@ -1,17 +1,3 @@
-{
-  "name": "cycure-backend",
-  "version": "1.0.0",
-  "description": "Backend for Cycure Honeypot Visualization",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.22"
-  }
-} 
+version https://git-lfs.github.com/spec/v1
+oid sha256:58a96a50ccb90eb58a7126d4af5099adb8887124f53e25cf12956c842b1a7d32
+size 352

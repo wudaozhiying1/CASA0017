@@ -1,16 +1,3 @@
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",
-            "request": "attach",
-            "name": "Attach to Node.js Process",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "port": "9229",
-            "restart": true,
-            "address": "localhost"
-        }
-    ]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:236d761e7596971d41a5537e259adadae5f56247c0a7ded94621671f74c887e8
+size 359
