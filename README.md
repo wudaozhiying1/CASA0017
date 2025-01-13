@@ -50,13 +50,18 @@ The platform provides multiple data visualization functionalities:
 ---
 
 ### Authors
-Sirui Luo： 
+# Sirui Luo： 
+
 *email address✉️: sirui.luo.24@ucl.ac.uk*
 
-Donghao Zhang： 
+
+# Donghao Zhang： 
+
 *email address✉️: donghao.zhang.24@ucl.ac.uk*
 
-Yue Zhu： 
+
+# Yue Zhu：
+
 *email address✉️: yue.zhu.24@ucl.ac.uk*
 
 ---
