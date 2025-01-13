@@ -48,3 +48,15 @@ The platform provides multiple data visualization functionalities:
   - **Bootstrap**: Ensures responsive layout and predefined UI components.
 
 ---
+
+### Authors
+Sirui Luo： 
+*email address✉️: sirui.luo.24@ucl.ac.uk*
+
+Donghao Zhang： 
+*email address✉️: donghao.zhang.24@ucl.ac.uk*
+
+Yue Zhu： 
+*email address✉️: yue.zhu.24@ucl.ac.uk*
+
+---
